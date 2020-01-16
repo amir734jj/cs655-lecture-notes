@@ -87,6 +87,7 @@ Nothing -> Any -> | A -> B -> C
 ```
 
 Exercise: How to break this type system restriction?
+<!--- Solution: use multi-step pattern matching. -->
 
 --- 
 
