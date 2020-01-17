@@ -114,12 +114,43 @@ public class HelloWorld {
 ```
 
 ```scala
-class Main() extends IO() { 
+// We need to extend IO to be able to use `out`
+class Main() extends IO() {
+   // This is a expression "block"
+   // All block expressions that are "feature" (or root level) run after primary constructor is invoked
    {
         out("Hello, World");
    }
 }
 
+```
+
+---
+
+# Cool syntax vs Java (part #2)
+
+```java
+public class HelloWorld {
+    public static int factorial(int n) {
+        return n == 0 ? 1 : n * factorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("result: " + factorial(10));
+    }
+}
+```
+
+```scala
+class Main() extends IO() {
+    // self keyword is similar to `this`, it's a way to access class scope
+    def factorial(n : Int) = if (n == 0) 1 else self.factorial(n - 1);
+
+   {
+        // Notice how there is no implict conversion from Int to String unlike java
+        out("result: ".concat(factorial(10).toString()));
+   }
+}
 ```
 
 ---
