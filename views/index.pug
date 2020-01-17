@@ -1,0 +1,7 @@
+extends layout.pug
+
+block content
+  h2 Labs
+  div.list-group
+  each file in files
+    a.list-group-item(href=`${file.url}`) #{file.name}

@@ -1,0 +1,26 @@
+{
+  "name": "cs351-lecture-notes",
+  "version": "1.0.0",
+  "description": "lecture notes for cs351",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "postinstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amir734jj/cs351-lecture-notes.git"
+  },
+  "author": "Seyedamirhossein Hesamian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amir734jj/cs351-lecture-notes/issues"
+  },
+  "homepage": "https://github.com/amir734jj/cs351-lecture-notes#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "file-regex": "^3.1.0",
+    "pug": "^2.0.4"
+  }
+}
