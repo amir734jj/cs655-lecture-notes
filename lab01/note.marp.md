@@ -15,7 +15,7 @@ marp: true
 
 ---
 
-# Compiler Steps (according to textbook)
+## Compiler Steps (according to textbook)
 
 - Front-end:
   - Lexical analysis
@@ -63,8 +63,7 @@ Cool or "Classroom Object Oriented Language" is a:
 # Cool (Cont.)
 ## More about "static" aspect.
 
-Types are defined (or deduced) in AST (or Abstract Syntax Tree) before code is generated.
-In dynamic languages like Python, JavaScript types are derived at the run-time hence, REPL
+Types are defined (or deduced) in AST (or Abstract Syntax Tree) before code is generated. In dynamic languages like Python, JavaScript types are derived at the run-time hence, REPL
 (or Read–Eval–Print-Loop).
 
 ---
@@ -72,14 +71,16 @@ In dynamic languages like Python, JavaScript types are derived at the run-time h
 # Cool (Cont.)
 ## More about "strong" aspect.
 
-There is no pointer in Cool but we have reference type variables (Any, ArrayAny and etc.). All types
-extend `Any` (actually `Any` extends `Nothing` but that is a special type). Moreover, we can only
-extend one type in Cool unlike C++ multiple interihance is not allowed.
-
-Cool is strongly typed because we can only type convert between types that are possible. For example:
+There is no pointer in Cool but we have reference type variables (Any, ArrayAny and etc.). All types extend `Any` (actually `Any` extends `Nothing` but that is a special type). Moreover, we can only extend one type in Cool unlike C++ multiple interihance is not allowed.
 
 
-In the following we should **not** be able to pattern matching from `C` to `String` (in one step):
+---
+
+# Cool (Cont.)
+## More about pattern matching
+
+Cool is strongly typed because we can only type convert between types that are possible. For example, in the following we should **not** be able to pattern matching from `C` to `String` (in one step):
+
 ```
 Nothing -> Any -> | A -> B -> C
                   | String
@@ -94,8 +95,7 @@ Exercise: How to break this type system restriction?
 # Cool (Cont.)
 ## More about manifest.
 
-Unlike Scala which is a super-set of Cool, we have be explict about types. Scala comes with "duck"
-typing.
+Unlike Scala which is a super-set of Cool, we have be explict about types. Scala comes with "duck" typing.
 
 ```scala
 var i : Int = 234; 
@@ -144,6 +144,7 @@ public class HelloWorld {
 ```scala
 class Main() extends IO() {
     // self keyword is similar to `this`, it's a way to access class scope
+    // == is a syntax sugar for .equals() of Int which is an object
     def factorial(n : Int) = if (n == 0) 1 else self.factorial(n - 1);
 
    {
@@ -157,8 +158,7 @@ class Main() extends IO() {
 
 # Vector
 
-Very similar to ArrayList in Java but not thread-safe and resizes by doubling the size as
-oppose to increase the size by half.
+Very similar to ArrayList in Java but not thread-safe and resizes by doubling the size as oppose to increase the size by half.
 
 - Vector
   - size(): Int
