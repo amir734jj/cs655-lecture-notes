@@ -3,7 +3,7 @@ marp: true
 ---
 # Yacc / Bison
 
-Parser generator
+Parser generator using Scala-Bison
 
 ---
 
@@ -23,7 +23,7 @@ Parser generator
 
 --- 
 
-# Example yacc file
+### Example yacc file
 
 ```yacc
 %{
@@ -75,9 +75,9 @@ declarator:
 
 ---
 
-# Lab assignment
+### Lab assignment
 
-### Parse XML
+#### Parse XML
 
 ```
 <foo />
