@@ -27,6 +27,7 @@ Lex is a program that generates lexical analyzer or scanner.
 
 - `YYINITIAL`: initial lexical state of the scanner
 - `yylex()`: special function that returns the matched token
+- `yybegin(<state>)`: "goto" <state> 
 - `%foo`: this is directive ([complete list of available directives](https://github.com/jflex-de/jflex/blob/master/docs/md/lex-specs.md))
    - `%line`: turns on line number counter so we could use a special function `yyline()`
    - `%class`: name of generated lexer class
@@ -35,6 +36,38 @@ Lex is a program that generates lexical analyzer or scanner.
    - `%state`: defines new lexical state
 
 - `[^]`: matches all characters not listed in the class. This is used to catch errors.
+
+---
+
+# Lab assignment
+
+- In this lab we will tokenize math expressions (parsing is next week!).
+- Think about the tokens we may need.
+- Source file:
+
+```
+0
+72
+2.4
+0.23
+~33
+1 + 2
+2 - 1
+3 * 4.1 - 2
+1 + ~2 - ~3
+42 + ~~~~~5
+(3 - 2) * 5
+```
+
+---
+
+# Where to start
+### Checkout the first two lines of `Cal.y`
+
+- To view all possible tokens to return to we should look at `Cal.y`
+  -  we can see all possible tokens, such as `ADD`, `SUB` and etc
+    - we also see a `OPERAND` token which takes a `Double` as an argument
+    - we can capture the "lexeme" by using `yytext()` method  
 
 ---
 
