@@ -180,7 +180,7 @@ We will be using:
 We will be using:
 - `.get(Int)`: get array at index
 - `.set(Int, Any)`: set array at index
-- `resize(Int)`: resizes the array`
+- `.resize(Int)`: resizes the array`
 
 ---
 
