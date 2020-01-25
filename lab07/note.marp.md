@@ -17,6 +17,12 @@ Compiler optimization and exercise of AST modification
 
 ---
 
+# How to accomplish it?
+
+Using visistor pattern and modifying the AST by returning a updated node
+
+---
+
 # Lab assignment
 
 We are trying to use a inherited and synthesized attribute to achieve this.
