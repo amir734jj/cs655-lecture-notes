@@ -7,6 +7,26 @@ Parser generator using Scala-Bison
 
 ---
 
+# What is a parser generator
+
+Is a program that takes a grammar and generates a code that can be used to parse the grammar
+
+---
+
+# Why are parser generators used?
+
+Because they generate a state machine and number of the states is not O(n) hence maintaining that code would
+be near impossible. Solution is to use parser generator make you concentrate on the grammar instead of its implementation.
+
+---
+
+# Bison vs. Yacc
+
+- Yacc and Bison are closely compatible
+- Bison in a part of the GNU project. And yacc is used as a utility on Berkeley Software Distribution (BSD). Though its compatible with yacc, but Lex and Yacc are a thing of the past. Flex and bison are widely used today.
+
+--- 
+
 # Yacc structure (`*.y`)
 
 - Directives: the first section is where we define tokens, associativity, order of operation and etc
