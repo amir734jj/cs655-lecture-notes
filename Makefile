@@ -4,19 +4,19 @@
 default:
 	@echo "make [build|publish]"
 
-# `make lab12.build`	// builds a specific lab into PDF
+# `make lab12.build`  // builds a specific lab into PDF
 %.build:
 	./scripts/build.sh $*
 
-# `make build`				// builds all labs into PDF
+# `make build`        // builds all labs into PDF
 build:
 	./scripts/build.sh
 
-# `make publish` 			// publish labs into your github
+# `make publish`      // publish labs into your github
 publish:
 	./scripts/publish.sh
 
-# `make lab10.new`		// create a new lab
+# `make lab10.new`    // create a new lab
 %.new:
 	mkdir -p $*;
 	echo "---\n\
@@ -26,6 +26,6 @@ marp: true\n\
 # Title!\
 " > $*/note.marp.md
 
-# `make clean`				// delete all PDF files so we can rebuild them
+# `make clean`        // delete all PDF files so we can rebuild them
 clean:
 	rm -i lab*/*.pdf >/dev/null
