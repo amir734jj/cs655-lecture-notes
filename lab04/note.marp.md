@@ -15,6 +15,8 @@ Abstract syntax tree (AST), or just syntax tree, is a tree representation of the
 1 + 2
 ```
 
+--- 
+
 - The output AST would be:
 
 ```text
@@ -40,6 +42,8 @@ if (2 > 6) {
     console.log(d)
 }
 ```
+
+---
 
  The output AST would be:
 ```text
