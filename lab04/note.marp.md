@@ -130,7 +130,3 @@ Let's try to construct the AST for the following cool program
 
 Follow "Cool Tour" to construct "Queens.cool" given it's AST. Basically reverse engineer the cool program from its AST.
 
----
-
-# 
-
