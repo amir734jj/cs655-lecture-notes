@@ -40,6 +40,8 @@ if (2 > 6) {
     console.log(d)
 }
 ```
+---
+## Example of AST (#2) Cont.
 
  The output AST would be:
 ```text
@@ -66,11 +68,17 @@ IfStatement
 
 ---
 
-# Lab assignmnet
+# Terms
 
-Follow "Cool Tour" to construct "Queens.cool" given it's AST. Basically reverse engineer the cool program from its AST.
+- Formal
+- Actual
+- Attribute
+- Dispatch
+  - Static
+  - Dynamic
 
 ---
 
-# 
+# Lab assignment
 
+Follow "Cool Tour" to construct "Queens.cool" given it's AST. Basically reverse engineer the cool program from its AST.
