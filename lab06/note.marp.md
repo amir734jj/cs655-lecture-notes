@@ -3,7 +3,7 @@ marp: true
 ---
 # Visitor pattern
 
-- It design pattern specifically designed to traverse a tree
+- It's a design pattern specifically designed to traverse a tree
 - It's an **essential** feature in all compilers in order to travser AST
 
 ---
@@ -83,7 +83,3 @@ object Main {
 # Lab assignmnet
 
 In this lab we will write a program to dump a formatted (or pretty printed) a Cool program given it's AST
-
-
-
-
