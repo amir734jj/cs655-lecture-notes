@@ -8,6 +8,17 @@ Abstract syntax tree (AST), or just syntax tree, is a tree representation of the
 
 ---
 
+# Terms
+
+- Formal
+- Actual
+- Attribute
+- Dispatch
+  - Static
+  - Dynamic
+
+---
+
 # Example of AST (#1)
 
 - Given the following expression:
@@ -42,6 +53,8 @@ if (2 > 6) {
     console.log(d)
 }
 ```
+---
+## Example of AST (#2) Cont.
 
 ---
 
@@ -120,13 +133,10 @@ Let's try to construct the AST for the following cool program
                                   @257 = add:21 
                                     @255 = variable:20 'i 
                                     @256 = int_lit:21 '1 
-
 ```
-
 
 ---
 
-# Lab assignmnet
+# Lab assignment
 
 Follow "Cool Tour" to construct "Queens.cool" given it's AST. Basically reverse engineer the cool program from its AST.
-
