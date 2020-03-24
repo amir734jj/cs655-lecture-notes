@@ -6,6 +6,45 @@ marp: true
 
 Generating MIPS code given a AST
 
+---
+# MIPS Registers
+
+MIPS instruction uses 5 bits for register addressing, so there can be 2^5 = 32 registers
+
+| **Number** | **Name** | **Use** | **Preserved across function calls?** |
+|:----------:|:--------:|:-------:|:------------------------------------:|
+| 0          | `$zero`  | constant 0 | —                                    |
+| 1          | `$at`    | assembler temporary | no                                   |
+| 2, 3       | `$v0, $v1` | function return values | no                                   |
+| 4 - 7      | `$a0 - $a3` | function arguments | no                                   |
+| 8 - 15     | `$t0 - $t7` | temporaries | no                                   |
+| 16 - 23    | `$s0 - $s7` | temporaries | yes                                  |
+| 24, 25     | `$t8, $t9` | temporaries | no                                   |
+| 26, 27     | `$k0, $k1` | reserved for OS kernel | —                                    |
+| 28         | `$gp`    | global pointer| —                                    |
+| 29         | `$sp`    | stack pointer | —                                    |
+| 30         | `$s8`    | temporaries | yes                                  |
+| 31         | `$ra`    | return address | —                                    |
+
+
+---
+## MIPS Review
+
+```mips
+  # Hello, World! program
+.data ## Data declaration section
+  ## String to be printed:
+  out_string: .asciiz "\nHello, World!\n"
+.text ## Assembly language instructions go in text segment
+  main: ## Start of code section
+  li $v0, 4 # system call code for printing string = 4
+  la $a0, out_string # load address of string to be printed into $a0
+  syscall # call operating system to perform operation
+  # specified in $v0
+  # syscall takes its arguments from $a0, $a1, ...
+  li $v0, 10 # terminate program
+  syscall
+```
 
 ---
 
@@ -133,8 +172,8 @@ We use the combination of offsets and labels to use the static data (i.e. dispat
 - Note that addresses are in bytes in MIPS
 
 ```Assembly
-  .word -1    # offset -1 with respect to "label"
+  .word -1    # offset -4 with respect to "label" (or label's address + (-4))
 label:
-  .word 2     # offset 0
-  .word 3     # offset 1
+  .word 2     # offset 0 (or label's address + 0)
+  .word 3     # offset 4 (or label's address + 4)
 ```

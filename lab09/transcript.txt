@@ -1,0 +1,87 @@
+Hi Everyone,
+Welcome to the online version of the class.
+	This will be lab#9 and in this lab we will start working on code generation.
+More specifically, CodeGen.scala. Basically we are done with front-end of the compiler.
+	If you remember from lecture #1 we discussed that Semantic analysis was the last thing
+	we are going to work in front-end, and in the back-end we will work on
+	code generation and optimized code generation.
+		We lost a week because of the the virus situation, we will skip PA8 which was optimized
+		code generation.
+Okay, let's start the lab.
+The ultimate goal is to complete CodeGen.scala which takes a populated AST and outputs MIPS code
+If you have taken cs315, if not try to review MIPS. It is very easy to understand.
+	There are two sections:
+		or 3 top-level directives
+			by directive I mean anything that starts with a dot 
+	.text: indicates that following items are stored in the user text segment, typically instructions
+	.data: indicates that following data items are stored in the data segment
+	.globl: declare that symbol sym is global and can be referenced from other files
+		remember that the generated code is intended to be run with cool-runtime.s
+		which contains the garbage collector. Also there are some variables we share with
+		cool-runtime.s so they need to declared .global, don't worry about those for now
+	Register are small set of data
+		- $t temporary
+		- $a function argument
+		- $v return values
+		- $sp holds the address of top of the stack
+	System call is a built-in function we can invoke using syscall keyword 
+
+Things like string and int literal constants, we want to declare them in .data; and that is the subject
+of this lab where we try to understand the layout of all these literals, object prototypes and etc.
+Let's start by int literal
+		word -1 # for garbage collector
+	int_lit13: # 13 was incrementor, starting from 0
+		.word 5 # class tag number
+		.word 4 # object size, 4 bytes
+		.word Int_dispTab # int's dispatch table label
+		.word 20 # 20 was the value of the Int object? not sure here
+		.word -1 # next one ..
+Let's continue with string literal:
+>> note that when you see a label, it is actually an address, 4 byte address
+	 so given a label string_lit22, we can use offset to get to a thing we are looking for
+		word -1 # for garbage collector
+	string_lit22: # 22 was incrementor, starting from 0
+		.word 3 # class tag number
+		.word 10 # object size, 10 bytes
+		.word String_dispTab # String dispatch table label
+		.word int_lit13 # length label of string
+		.ascii "Done with 8 queens!" # text
+		.byte 10 # non-printable character being
+		# to Int (i.e. '\n'.toInt)
+		.byte 0 # \0
+		.align 2 # align data to 2^n bytes (i.e. 2^2)
+What do we mean by .align
+	Basically everything should be in word boundary or 32 bit or 4 bytes. That's why we align by 2^2
+Another simple thing that gets generated is class name table which is a dump of classnames as string literals
+	class_nameTab:
+		.word string_lit1
+		.word string_lit13
+		.word string_lit11
+		.word string_lit10
+		.word string_lit7
+		.word string_lit6
+		.word string_lit5
+		.word string_lit3
+		.word string_lit15
+		.word string_lit21
+		.word string_lit14
+The next thing is dispatch table which is a list of methods available in a class
+	Symbol_dispTab:
+		.word Any.Any # base class constructor
+		.word Symbol.toString # toString method that Symbol overrode
+		.word Any.equals # base class equals method
+		.word Symbol.Symbol # Symbol constructor
+		.word Symbol.hashCode # hashCode method of Symbol
+	Again, pay attention to the offsets
+	
+Last thing is object prototype for Symbol or attribute table which is used to create an instance of a class
+It is a recipe on how to create an instance of a class
+		.word -1 # garbage collector tag
+	Symbol_protObj:
+		.word 2 # class tag
+		.word 6 # object size
+		.word Symbol_dispTab # dispatch table of symbol
+		.word 0 # attribute #1
+		.word 0 # attribute #2
+		.word int_lit0 # attribute #2
+Pay attention to the symbol attributes and how they show up in object prototype
