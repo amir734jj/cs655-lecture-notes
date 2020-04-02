@@ -1,0 +1,11 @@
+class Main() {
+
+  {
+    fib(3)
+  };
+
+  def fib(n: Int): Int = if (n == 0) 1 else n * fib(n - 1);  
+}
+
+
+

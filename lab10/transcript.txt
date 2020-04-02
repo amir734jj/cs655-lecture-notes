@@ -1,0 +1,11 @@
+Hi everyone. Welcome to lab 10.
+In this lab, we will go deeper into code generation. More specifically the .text section of the MIPS code.
+Please review MIPS if you haven't done already but we have a limited set of registers but in our cool code
+    we can have as many temporary variables as we want. So the question is how we can manage these in a way
+    that values in registers don't get overwritten between caller and callee.
+More specifically we use a visitor pattern to generate code and the code for a method shouldn't know what
+    registers are available, which ones are being used and behave differently. Instead, we use a set of
+    steps to manage these temporary data so that the method body is clean and context unaware.
+The trick we use us something called prologues and epilogues. Please review handout 8 of cs655.
+It is very important to follow the handout exactly because we don't want to debug stack, its not straighforward.
+
