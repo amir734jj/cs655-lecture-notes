@@ -1,11 +1,7 @@
 class Main() {
-
   {
-    fib(3)
+    factorial(3)
   };
 
-  def fib(n: Int): Int = if (n == 0) 1 else n * fib(n - 1);  
+  def factorial(n: Int): Int = if (n == 0) 1 else n * factorial(n - 1);  
 }
-
-
-

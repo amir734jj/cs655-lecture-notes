@@ -283,7 +283,7 @@ Main_dispTab:
 	.word	Any.toString
 	.word	Any.equals
 	.word	Main.Main
-	.word	Main.fib
+	.word	Main.factorial
 	.word	-1
 Main_protObj:
 	.word	1
@@ -767,14 +767,14 @@ Main.Main:
 	sw	 $a0 0($sp)
 	addiu	 $sp $sp -4
 	lw	 $a0 0($fp)	# line 5
-	jal	 Main.fib
+	jal	 Main.factorial
 	move	 $a0 $s0	# line 12
 	lw	 $fp 16($sp)
 	lw	 $s0 12($sp)
 	lw	 $ra 8($sp)
 	addiu	 $sp $sp 16
 	jr	 $ra
-Main.fib:
+Main.factorial:
 	addiu	 $sp $sp -24
 	sw	 $fp 24($sp)
 	sw	 $s0 20($sp)
@@ -809,7 +809,7 @@ L17:
 	sw	 $a0 0($sp)
 	addiu	 $sp $sp -4
 	lw	 $a0 4($fp)
-	jal	 Main.fib
+	jal	 Main.factorial
 	jal	 Any.clone
 	lw	 $t1 0($fp)
 	lw	 $t1 12($t1)
