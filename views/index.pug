@@ -2,6 +2,14 @@ extends layout.pug
 
 block content
   h2 Labs
-  div.list-group
-  each file in files
-    a.list-group-item(href=`${file.url}`) #{file.name}
+  .row
+    .col-sm-4
+      div.list-group
+        each file in files
+          a.list-group-item(href=`${file.url}`) #{file.name}      
+    .col-sm-8
+      each video in videos
+        a(href=`${video}` class='btn btn-default clearfix', style='margin-bottom: 0.125rem') Video Link
+        div.embed-responsive.embed-responsive-16by9
+          iframe.embed-responsive-item(src=`${video}`)
+        hr
