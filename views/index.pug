@@ -11,5 +11,5 @@ block content
       each video in videos
         a(href=`${video}` class='btn btn-default clearfix', style='margin-bottom: 0.125rem') Video Link
         div.embed-responsive.embed-responsive-16by9
-          iframe.embed-responsive-item(src=`${video}`)
+          iframe.embed-responsive-item(width='560', height='315', src=`${video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
         hr
