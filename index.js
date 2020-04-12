@@ -18,10 +18,11 @@ findFiles(__dirname, /lab\d+\/\w+\.pdf/g, 1)
         payload.files = files.map(props => {
             const path = props.dir.substring(props.dir.lastIndexOf('/') + 1);
             return {
-                name: path,
+                name: props.file,
+                path: path,
                 url: path + '/' + props.file
             }
-        }).sort((x, y) => x.name.localeCompare(y.name))
+        }).sort((x, y) => x.path.localeCompare(y.path))
     })
 
 findFiles(__dirname, /lab\d+\/video\.json/g, 1)
