@@ -1,0 +1,43 @@
+
+Hi Everyone,
+
+Welcome to lab #11. In this lab we will think about how to how code
+generator works recursively and transfer of control flows.
+
+We will go over
+    conditional code generation
+    match expression including null arm
+    type checking
+
+First lets talk about conditional:
+
+One way to write conditional is the following
+
+  beqz $a0, false   # if false jump to false label
+                    # otherwise continue
+true
+  # then arm of conditional
+
+  b done            # branch unconditionally to done
+false:
+  # else arm of conditional
+
+done:
+  # end of conditional
+
+Trick question. beqz is a macro MIPS instruction. What is the actual MIPS instruction when macro gets expanded?
+beq $a0, $zero, false  # register $zero which is an alias for $0 holds the value of zero and it cannot change
+
+What is another way to write this conditional:
+> hint: use bne instruction
+
+
+Now lets talk about mach expression. Remember pattern mach expression can have null arm but it is optional.
+if null arm is missing, it will get added by the compiler. You may be wondering why null arm is needed?
+
+The reasons is all other arms expect value to not be null.
+
+In the cool-manual it specifically says that if value is null and no null branch is present then we should
+pass the control to runtime exception.
+
+We already did a semantic check which means type of each arm of the branch is less than previous. However, for 
