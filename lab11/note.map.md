@@ -72,4 +72,15 @@ e match {
 }
 ```
 
-For code generation we assume branch arms do not overlap so we can write the cod for arm sequentially. However, we need to write the code for `null` arm first.
+For code generation we assume branch arms do not overlap so we can write the code for arm sequentially. However, we need to write the code for `null` arm first.
+
+
+---
+
+### Basic flow
+
+- if `null` arm exist then check if expr is `null` and branch to there
+    - if it does not exist then create `null` branch that always jumps to runtime error
+- for each branch arm compare static type of the branch and type of expression object and see if object "fits" otherwise move on to the next arm.
+- when each branch arm is finished branch unconditionally to the end
+- remember to write the code for branch expression just visit `b.get_expr().accept(this)`

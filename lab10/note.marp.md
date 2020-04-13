@@ -11,7 +11,7 @@ For complete detail see Handout8 of cs654
 
 ### Summary of calling sequence
 
-```mips
+```MIPS
 # evaluate receiver this into 0($fp)
     sw	 $a0 0($fp)
 # foreach actual in actuals
@@ -34,7 +34,7 @@ For complete detail see Handout8 of cs654
 
 Remember `$fp` holds the previous value of `$sp`
 
-```mips
+```MIPS
 # make space for n + 3 words (3 because of $fp, $ra and $s0)
 #   save frame pointer
 #   save this reference
@@ -51,7 +51,7 @@ Remember `$fp` holds the previous value of `$sp`
 
 After the method body is done, the return value is in `$a0`.
 
-```mips
+```MIPS
 #   restore frame pointer
 #   restore this reference
 #   restore return address
@@ -98,7 +98,7 @@ class Main() {
 
 Method Main.fib Prologue 
 
-```mips
+```MIPS
 Main.fib:
     addiu	 $sp $sp -24
     sw	 $fp 24($sp)
@@ -114,7 +114,7 @@ Main.fib:
 
 Method Main.fib Epilogue 
 
-```mips
+```MIPS
     lw	 $fp 24($sp)
     lw	 $s0 20($sp)
     lw	 $ra 16($sp)

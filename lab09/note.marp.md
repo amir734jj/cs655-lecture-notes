@@ -30,7 +30,7 @@ MIPS instruction uses 5 bits for register addressing, so there can be 2^5 = 32 r
 ---
 ## MIPS Review
 
-```mips
+```MIPS
   # Hello, World! program
 .data ## Data declaration section
   ## String to be printed:
@@ -52,7 +52,7 @@ MIPS instruction uses 5 bits for register addressing, so there can be 2^5 = 32 r
 
 In the code generation phase, we need to dump the all the literals in `.data` section
 
-```Assembly
+```MIPS
   .word -1          # for garbage collector
 int_lit13:          # 13 was incrementor, starting from 0
   .word 5           # class tag number
@@ -70,7 +70,7 @@ The same here, for strings it similar layout, except that for non-printable char
 we need to use their ASCII representation. Also, we should not forget 0 to tell assembler that string ended.
 
 
-```Assembly
+```MIPS
   .word -1              # for garbage collector
 string_lit22:           # 22 was incrementor, starting from 0
   .word 3               # class tag number
@@ -98,7 +98,7 @@ The "word"s should be in a *word boundary* meaning in MIPS which is a 32 bit we 
 
 Table of class names used in the program
 
-```Assembly
+```MIPS
 class_nameTab:
   .word string_lit1
   .word string_lit13
@@ -117,7 +117,7 @@ class_nameTab:
 
 ## Dispatch table for `Symbol`
 
-```Assembly
+```MIPS
 Symbol_dispTab:
   .word Any.Any         # base class constructor
   .word Symbol.toString # toString method that Symbol overrode
@@ -130,7 +130,7 @@ Symbol_dispTab:
 
 ## Object prototype for `Symbol` or attribute table
 
-```Assembly
+```MIPS
   .word -1              # garbage collector tag
 Symbol_protObj:
   .word 2               # class tag
@@ -171,7 +171,7 @@ We use the combination of offsets and labels to use the static data (i.e. dispat
 
 - Note that addresses are in bytes in MIPS
 
-```Assembly
+```MIPS
   .word -1    # offset -4 with respect to "label" (or label's address + (-4))
 label:
   .word 2     # offset 0 (or label's address + 0)
