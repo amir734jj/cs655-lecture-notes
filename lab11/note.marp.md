@@ -19,7 +19,7 @@ marp: true
 
   beqz $a0, false   # if false jump to false label
                     # otherwise continue
-true
+true:
   # then arm of conditional
 
   b done            # branch unconditionally to done
