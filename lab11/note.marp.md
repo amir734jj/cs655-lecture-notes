@@ -84,3 +84,9 @@ For code generation we assume branch arms do not overlap so we can write the cod
 - for each branch arm compare static type of the branch and type of expression object and see if object "fits" otherwise move on to the next arm.
 - when each branch arm is finished branch unconditionally to the end
 - remember to write the code for branch expression just visit `b.get_expr().accept(this)`
+
+---
+
+# Type testing
+
+Remember each object at offset 0 (or `i_TAGOFFSET`) has the class tag number. That is useful for type checking for `Ctypecase`
