@@ -1,0 +1,11 @@
+Hi Everyone,
+
+Welcome to lab12. This is the last lab for this semester.
+
+In this lab we will talk about optimized code generation. For specifically three improvements to assignment 7:
+    - no more boxing and unboxing for boolean
+    - no more boxing and unboxing for integer
+        > this means that when expression returns a boolean or integer, it's just the value
+          and now unlike assignment 7 we don't need to try to get the value from an object
+    - using s1 ... s6 as temporaries
+        > this means that we need to cycle through temporaries and if current temporaries
