@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/amir734jj/cs655-lecture-notes#readme",
   "dependencies": {
+    "@marp-team/marp-cli": "^1.4.1",
     "express": "^4.17.1",
     "file-regex": "^3.1.0",
     "glob": "^7.2.0",
