@@ -2,4 +2,4 @@
 .vscode
 node_modules
 *.note.marp.pdf
-
+.idea
