@@ -1,26 +1,34 @@
 {
-  "name": "cs351-lecture-notes",
+  "name": "cs655-lecture-notes",
   "version": "1.0.0",
-  "description": "lecture notes for cs351",
+  "description": "lecture notes for cs655",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "postinstall": ""
+    "postinstall": "npm run build",
+    "build": "node ./scripts/build.js",
+    "publish": "./scripts/publish.sh",
+    "clean": "node ./scripts/clean.js",
+    "prepublish": "npm run clean"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amir734jj/cs351-lecture-notes.git"
+    "url": "git+https://github.com/amir734jj/cs655-lecture-notes.git"
   },
   "author": "Seyedamirhossein Hesamian",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/amir734jj/cs351-lecture-notes/issues"
+    "url": "https://github.com/amir734jj/cs655-lecture-notes/issues"
   },
-  "homepage": "https://github.com/amir734jj/cs351-lecture-notes#readme",
+  "homepage": "https://github.com/amir734jj/cs655-lecture-notes#readme",
   "dependencies": {
     "express": "^4.17.1",
     "file-regex": "^3.1.0",
-    "pug": "^2.0.4"
+    "glob": "^7.2.0",
+    "highlight.js": "^11.3.1",
+    "markdown-it": "^12.2.0",
+    "pug": "^3.0.2",
+    "underscore": "^1.13.1"
   }
 }

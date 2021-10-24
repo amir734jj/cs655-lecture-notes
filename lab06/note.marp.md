@@ -1,6 +1,3 @@
----
-marp: true
----
 # Visitor pattern
 
 - It's a design pattern specifically designed to traverse a tree

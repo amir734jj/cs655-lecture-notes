@@ -1,7 +1,3 @@
----
-marp: true
----
-
 # Welcome to cs655 - 801 (Spring-2020)
 ### Seyedamirhossein Hesamian (Amir)
 - Please send email questions to:

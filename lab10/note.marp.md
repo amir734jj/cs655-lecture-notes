@@ -1,6 +1,3 @@
----
-marp: true
----
 # MIPS
 
 ## Prologue and Epilogue

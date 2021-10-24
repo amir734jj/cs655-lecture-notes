@@ -1,7 +1,3 @@
----
-marp: true
----
-
 # Code generation and control flow
 
 ---

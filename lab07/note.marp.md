@@ -1,6 +1,3 @@
----
-marp: true
----
 # Constant folding
 
 Compiler optimization and exercise of AST modification

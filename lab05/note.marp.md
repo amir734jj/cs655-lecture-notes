@@ -1,6 +1,3 @@
----
-marp: true
----
 # Parser conflicts + JSON parser
 
 

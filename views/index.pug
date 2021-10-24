@@ -3,13 +3,26 @@ extends layout.pug
 block content
   h2 Labs
   .row
-    .col-sm-4
-      div.list-group
-        each file in files
-          a.list-group-item(href=`${file.url}`) #{file.path} / #{file.name}      
-    .col-sm-8
-      each video in videos
-        a(href=`${video}` class='btn btn-default clearfix', style='margin-bottom: 0.125rem') Video Link
-        div.embed-responsive.embed-responsive-16by9
-          iframe.embed-responsive-item(width='560', height='315', src=`${video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
-        hr
+    .tabbable
+      ul.nav.nav-pills.nav-stacked.col-md-2
+        -var index = 0
+        each val, key in labs
+          li(class=index === 0 ? 'active' : '')
+            a(href=`#${key}`, data-toggle='tab') #{key}
+          -index++
+
+      .tab-content.col-md-10
+        -var index = 0
+        each val, key in labs
+          .tab-pane(id=key, class=index === 0 ? 'active' : '')
+            a.btn.btn-default(href=`${val.pdf}`) Download PDF
+
+            - if (val.video) {
+              .embed-responsive.embed-responsive-16by9
+                iframe.embed-responsive-item(width='560', height='315', src=`${val.video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+            -}
+
+            |!{val.md}
+            //- | #{val.md}
+
+          -index++

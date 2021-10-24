@@ -1,6 +1,3 @@
----
-marp: true
----
 # Yacc / Bison
 
 Parser generator using Scala-Bison

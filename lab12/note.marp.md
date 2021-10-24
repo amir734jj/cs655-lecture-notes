@@ -1,7 +1,3 @@
----
-marp: true
----
-
 # Optimize code generation
 
 ---

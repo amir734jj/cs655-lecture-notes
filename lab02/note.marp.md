@@ -1,6 +1,3 @@
----
-marp: true
----
 # Lexer
 
 Tokenizing stream of characters using regular expressions

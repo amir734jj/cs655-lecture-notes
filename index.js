@@ -1,46 +1,56 @@
-const findFiles = require('file-regex')
-const express = require('express')
-const path = require('path')
-const fs = require('fs')
-const app = express()
-const port = process.env.PORT || 3000
+var express = require("express");
+var path = require("path");
+var fs = require("fs");
+var glob = require("glob");
+var _ = require("underscore");
+var MarkdownIt = require("markdown-it");
+var hljs = require("highlight.js");
 
-function flatten(arr) {
-    return arr.reduce(function(flat, toFlatten) {
-        return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
-    }, []);
+var app = express();
+var port = process.env.PORT || 3000;
+
+var md = new MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      } catch (__) {}
+    }
+
+    return ""; // use external default escaping
+  },
+});
+
+var labs = {};
+
+function labName(file) {
+  return file.split("/")[0];
 }
 
+glob("lab*/manifest.json", {}, function (err, files) {
+  files.forEach((file) => {
+    var lab = labName(file);
 
-let payload = {files:[], videos:[]};
-findFiles(__dirname, /lab\d+\/\w+\.pdf/g, 1)
-    .then(files => {
-        payload.files = files.map(props => {
-            const path = props.dir.substring(props.dir.lastIndexOf('/') + 1);
-            return {
-                name: props.file,
-                path: path,
-                url: path + '/' + props.file
-            }
-        }).sort((x, y) => x.path.localeCompare(y.path))
-    })
+    var manifest = JSON.parse(fs.readFileSync(file), {
+      encoding: "utf8",
+    });
 
-findFiles(__dirname, /lab\d+\/video\.json/g, 1)
-    .then(videos => {
-        payload.videos = flatten(videos.map(props => {
-            return JSON.parse(fs.readFileSync(path.join(props.dir, props.file), {
-                encoding: 'utf8'
-            }))
-        })).reverse();
-    })
+    var markdown = fs.readFileSync(path.join(lab, "note.marp.md")).toString();
 
+    labs[lab] = {
+      md: md.render(markdown),
+      pdf: path.join(lab, "note.marp.pdf"),
+      video: manifest.video,
+    };
+  });
+});
 
-app.use(express.static('.'))
+app.use(express.static("."));
 
-app.set('view engine', 'pug')
+app.set("view engine", "pug");
 
-app.get('/', (req, res) => {
-    res.render('index', payload);
-})
+app.get("/", (req, res) => {
+  res.render("index", { labs });
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

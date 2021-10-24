@@ -1,4 +1,4 @@
-SR: shift-reduce. Shift is pushing, reduce is poping
+SR: shift-reduce. Shift is pushing, reduce is popping
 LR: left to right scanning
 
 If grammar has a non-determinism then we need to left factor it

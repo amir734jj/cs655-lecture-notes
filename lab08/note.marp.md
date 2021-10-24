@@ -1,7 +1,3 @@
----
-marp: true
----
-
 # Inheritance graph
 
 

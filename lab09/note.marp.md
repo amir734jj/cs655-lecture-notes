@@ -1,7 +1,3 @@
----
-marp: true
----
-
 ## `CodeGen.scala`
 
 Generating MIPS code given a AST
