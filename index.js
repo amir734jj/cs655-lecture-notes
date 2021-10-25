@@ -2,11 +2,11 @@ var express = require("express");
 var path = require("path");
 var fs = require("fs");
 var glob = require("glob");
-var _ = require("underscore");
 var MarkdownIt = require("markdown-it");
 var hljs = require("highlight.js");
 
 var app = express();
+
 var port = process.env.PORT || 3000;
 
 var md = new MarkdownIt({
