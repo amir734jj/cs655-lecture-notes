@@ -1,5 +1,5 @@
 .DS_Store
 .vscode
 node_modules
-*.note.marp.pdf
+note.marp.pdf
 .idea
