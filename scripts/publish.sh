@@ -3,5 +3,5 @@
 datetime=$(date '+%m/%d/%Y %H:%M:%S');
 
 git add .
-git commit -m "improvement as of: $datetime"
+git commit -m "changes as of: $datetime"
 git push
