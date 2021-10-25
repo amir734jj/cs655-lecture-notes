@@ -7,10 +7,8 @@ glob("lab*/*.marp.md", {}, function (err, files) {
     var cmd = `marp ${file} --allow-local-files --pdf -o ${destination}.pdf`;
     var result = execa.commandSync(cmd, {
       ...process.env,
-      CHROME_PATH: "$GOOGLE_CHROME_BIN",
+      CHROME_PATH: process.env.GOOGLE_CHROME_BIN,
     });
-    console.log(
-      `[${result.failed ? "failed" : "success"}] ${result.command}`
-    );
+    console.log(`[${result.failed ? "failed" : "success"}] ${result.command}`);
   });
 });
