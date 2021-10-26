@@ -23,13 +23,9 @@ var md = new MarkdownIt({
 
 var labs = {};
 
-function labName(file) {
-  return file.split("/")[0];
-}
-
 glob("lab*/manifest.json", {}, function (err, files) {
   files.forEach((file) => {
-    var lab = labName(file);
+    var lab = file.split("/")[0];
 
     var manifest = JSON.parse(fs.readFileSync(file), {
       encoding: "utf8",
