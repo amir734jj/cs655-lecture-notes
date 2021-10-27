@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-  .row
+  .row.clearfix
     .tabbable
       ul.nav.nav-pills.nav-stacked.col-md-2
         li
@@ -48,6 +48,10 @@ block content
                   img.img-responsive(src='/public/cool.svg' alt='Cool' style='height:10rem')
                   .caption
                     p(style="text-align: center") Cool programming language
+          
+          hr
+          .row
+            #diagram(style="text-align: center")
 
         -var index = 0
         each val, key in labs
