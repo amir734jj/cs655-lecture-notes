@@ -20,8 +20,14 @@ block content
             h4 CS655: Compiler Implementation Laboratory 
           p Spring 2021
           p Seyedamirhossein Hesamian
-          p
-            a(href="mailto:hesamian@uwm.edu") hesamian@uwm.edu
+            .btn-group
+              a.btn.btn-default(href='https://www.linkedin.com/in/hesamian/', target='_blank')
+                i.fa.fa-github(aria-hidden='true')
+              a.btn.btn-default(href='https://github.com/amir734jj', target='_blank')
+                i.fa.fa-linkedin(aria-hidden='true')
+              a.btn.btn-default(href='mailto:hesamian@uwm.edu', target='_blank')
+                i.fa.fa-envelope(aria-hidden='true')
+
           h3
           .row
             .col-md-4
@@ -45,14 +51,20 @@ block content
 
         -var index = 0
         each val, key in labs
-          .tab-pane(id=key)
-            a.btn.btn-default.pull-right(href=`${val.pdf}`, style="margin-bottom: 1rem") Download PDF
+          - if (val.enabled) {
+            .tab-pane(id=key)
+              .container-fluid
+                a.btn.btn-default.pull-right(href=`${val.pdf}`, style="margin-bottom: 1rem") Download PDF
 
-            - if (val.video) {
-              .embed-responsive.embed-responsive-16by9
-                iframe.embed-responsive-item(width='560', height='315', src=`${val.video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
-            -}
+              - if (val.video) {
+                .container-fluid
+                  .embed-responsive.embed-responsive-16by9
+                    iframe.embed-responsive-item(width='560', height='315', src=`${val.video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
+                  
+                  hr
+              - }
 
-            |!{val.md}
-
+              .container-fluid 
+                |!{val.md}
+          - }
           -index++

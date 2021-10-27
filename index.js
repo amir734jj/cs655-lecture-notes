@@ -37,6 +37,7 @@ glob("lab*/manifest.json", {}, function (err, files) {
       md: md.render(markdown),
       pdf: path.join(lab, "note.marp.pdf"),
       video: manifest.video,
+      enabled: process.env.NODE_ENV === "production" ? manifest.enabled : true,
     };
   });
 });
