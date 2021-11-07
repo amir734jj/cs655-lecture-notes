@@ -8,6 +8,8 @@ console.log(
   )}`
 );
 
+console.log(JSON.stringify(process.env));
+
 glob("lab*/*.marp.md", {}, function (err, files) {
   files.forEach((file) => {
     var destination = file.replace(".md", "");
