@@ -1,6 +1,10 @@
 var glob = require("glob");
 var execa = require("execa");
+
 var fs = require("fs");
+var p = "/app/.apt/opt/google/chrome/chrome";
+console.log(`${p}: exists? ${fs.existsSync(p)}`);
+console.log(JSON.stringify(process.env));
 
 glob("lab*/*.marp.md", {}, function (err, files) {
   files.forEach((file) => {
