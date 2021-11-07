@@ -1,5 +1,10 @@
 var glob = require("glob");
 var execa = require("execa");
+var path = require("path");
+
+path.existsSync(process.env.GOOGLE_CHROME_BIN, function (exists) {
+  console.log(`${process.env.GOOGLE_CHROME_BIN}: exists? ${exists}`);
+});
 
 glob("lab*/*.marp.md", {}, function (err, files) {
   files.forEach((file) => {
