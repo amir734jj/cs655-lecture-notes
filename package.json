@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "postinstall": "npm run build",
     "build": "npm run clean && node ./scripts/build.js",
     "publish": "./scripts/publish.sh",
     "clean": "node ./scripts/clean.js"
