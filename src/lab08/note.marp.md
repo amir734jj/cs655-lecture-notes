@@ -18,7 +18,11 @@ Use a map where key is `Bar`, `Baz` and value is `Foo`
 ```scala
 var table: Map[Symbol, Symbol] = Map()
 
-override def visit_class_decl (cd: Cclass_decl, name: Symbol, parent: Symbol, features: Features, filename: Symbol) {
+override def visit_class_decl(cd: Cclass_decl,
+                              name: Symbol,
+                              parent: Symbol,
+                              features: Features,
+                              filename: Symbol) {
 
     // Add a key value pair to the map
     table += (name -> parent)

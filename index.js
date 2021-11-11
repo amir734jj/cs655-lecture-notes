@@ -23,26 +23,30 @@ var md = new MarkdownIt({
 
 var labs = {};
 
-glob("lab*/manifest.json", {}, function (err, files) {
+glob("src/lab*/manifest.json", {}, function (err, files) {
   files.forEach((file) => {
-    var lab = file.split("/")[0];
+    var labPath = file.split("/").slice(0, -1).join("/");
+    var labName = labPath.split("/").slice(-1).pop();
 
     var manifest = JSON.parse(fs.readFileSync(file), {
       encoding: "utf8",
     });
 
-    var markdown = fs.readFileSync(path.join(lab, "note.marp.md")).toString();
+    var markdown = fs
+      .readFileSync(path.join(labPath, "note.marp.md"))
+      .toString();
 
-    labs[lab] = {
+    labs[labName] = {
       md: md.render(markdown),
-      pdf: path.join(lab, "note.marp.pdf"),
+      pdf: path.join(labPath, "note.marp.pdf"),
       video: manifest.video,
       enabled: process.env.NODE_ENV === "production" ? manifest.enabled : true,
     };
   });
 });
 
-app.use(express.static("."));
+app.use(express.static("src"));
+app.use("/public", express.static("public"));
 
 app.set("view engine", "pug");
 

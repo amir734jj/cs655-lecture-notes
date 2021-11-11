@@ -1,13 +1,11 @@
-# Welcome to cs655 - 801 (Spring-2020)
+# Welcome to cs655 - 801 (Spring-2022)
 ### Seyedamirhossein Hesamian (Amir)
 - Please send email questions to:
   - [boyland@uwm.edu](mailto:boyland@uwm.edu)
-  - [rodenbe4@uwm.edu](mailto:rodenbe4@uwm.edu)
   - [hesamian@uwm.edu](mailto:hesamian@uwm.edu)
 - Office hour: TBD
 - Room: EMS 9th floor computer lab
-- Slides: [github.com/amir734jj/cs655-lecture-notes]
-  (https://github.com/amir734jj/cs655-lecture-notes)
+- Slides: [github.com/amir734jj/cs655-lecture-notes](https://github.com/amir734jj/cs655-lecture-notes)
 
 ---
 
@@ -31,7 +29,7 @@
 # Essential Concepts
 
 - AST
-- BNF / E-BNF (Option, Repetition, Grouping, Concatination) 
+- BNF / E-BNF (Option, Repetition, Grouping, Concatenation) 
 - Visitor pattern
 
 ---
@@ -88,7 +86,7 @@ Exercise: How to break this type system restriction?
 # Cool (Cont.)
 ## More about manifest.
 
-Unlike Scala which is a super-set of Cool, we have be explict about types. Scala comes with "duck" typing.
+Unlike Scala which is a super-set of Cool, we have be explicit about types. Scala comes with "duck" typing.
 
 ```scala
 var i : Int = 234; 
@@ -140,7 +138,7 @@ class Main() extends IO() {
     // == is a syntax sugar for .equals() of Int which is an object
     def factorial(n : Int) = if (n == 0) 1 else self.factorial(n - 1);
     {
-      // Notice how there is no implict conversion from Int to String unlike java
+      // Notice how there is no implicit conversion from Int to String unlike java
       out("result: ".concat(factorial(10).toString()));
     }
 }
