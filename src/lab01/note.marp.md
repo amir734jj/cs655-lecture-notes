@@ -26,6 +26,27 @@
 
 ---
 
+
+# Compiler Steps in Action
+
+```xml
+1 + 2 >--(Tokenizer)--> <Num, 1> <PlusToken> <Num, 2>
+
+>--(Parser)-->
+                          <Root>
+                  /          |         \
+                <Num, 1> <PlusToken> <Num, 2>
+
+>--(Semantic)-->
+    Type of <Root>? Int. Because Int + Int = Int
+
+>--(CodeGen)-->
+int result = 1 + 2;
+```
+
+---
+
+
 # Essential Concepts
 
 - AST
@@ -38,7 +59,7 @@
 
 - Cool manual
 - Textbook
-- optional textbook "Dragon Book"
+- Optional textbook: "Dragon Book"
 
 ---
 
@@ -108,12 +129,12 @@ public class HelloWorld {
 // We need to extend IO to be able to use `out`
 class Main() extends IO() {
    // This is a expression "block"
-   // All block expressions that are "feature" (or root level) run after primary constructor is invoked
+   // All block expressions that are "feature" (or root level) 
+   // run after primary constructor is invoked
    {
-        out("Hello, World");
+      out("Hello, World");
    }
 }
-
 ```
 
 ---
@@ -143,12 +164,48 @@ class Main() extends IO() {
     }
 }
 ```
+---
+
+# Cool syntax vs Java (part #3)
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+      int[] arr = new int[] { 4, 5, 9 };
+      System.out.println(arr[0] + arr[1] == arr[2]);
+    }
+}
+```
+
+```scala
+class Main() extends IO() {
+    {
+      var arr: ArrayAny = new ArrayAny(3);
+      arr.set(0, 4);
+      arr.set(1, 5);
+      arr.set(2, 9);
+
+      var x: Int = arr.get(0) match { case num: Int => num };
+      var y: Int = arr.get(1) match { case num: Int => num };
+      var z: Int = arr.get(2) match { case num: Int => num };
+      out(
+        (x + y == z).toString()
+      )
+    }
+}
+```
 
 ---
 
+# Lab Exercise
+
+Implement `Vector` and `VectorEnumeration`
+
+--- 
+
 # Vector
 
-Very similar to `ArrayList` in Java but not thread-safe and resizes by doubling the size as oppose to increase the size by half.
+In Java, `vector` is very similar to `ArrayList` in Java but not thread-safe and resizes by doubling the size as oppose to increase the size by half.
 
 - Vector
   - `size(): Int`
@@ -180,6 +237,14 @@ We will be using:
 
 # TODO
 
-- `class Enumeration() extends IO()`
-- `class Vector()`
-- `class VectorEnumeration(var elements: ArrayAny, var n: Int) extends Enumeration()`
+```scala
+class Enumeration() extends IO() {
+  // TODO
+}
+class Vector() {
+  // TODO
+}
+class VectorEnumeration(var elements: ArrayAny, var n: Int) extends Enumeration() {
+  // TODO
+}
+```
