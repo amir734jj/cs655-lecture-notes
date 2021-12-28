@@ -6,7 +6,8 @@ RUN npm run build
 
 FROM node:lts-alpine AS web-server
 WORKDIR /usr/src/app
-COPY --from=build-pdf /usr/src/app .
+COPY . .
+COPY --from=build-pdf /usr/src/app/src ./src
 RUN npm install
 EXPOSE 80
 ENTRYPOINT ["/usr/bin/env"]
