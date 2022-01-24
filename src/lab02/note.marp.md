@@ -4,10 +4,44 @@ Tokenizing stream of characters using regular expressions
 
 ---
 
-# `Lex`
+### Lexer > Regex
+
+- Lexers use Regular expressions.
+- regular expression is greedy meaning that: longest match always!
+- use negative rule to prevent non-greedy behavior: `\"[^"]\"`
+- in ANTLR there is a designated non-greedy operator `?` (e.g. `+?`, `*?`, or `??`)
+
+---
+
+### Example
+
+Lexer:
+
+```lex
+\"(\\.|[^\n"\\])*\" {
+        println("Found it: " + yytext())
+    }
+```
+
+Result:
+
+```shell
+>>> "a\"b""c\d"""
+Found it: : "a\"b"
+Found it: : "c\d"
+Found it: : ""
+
+> "\"
+Error: "\"
+```
+
+---
+
+## `Lex`
 
 Lex is a program that generates lexical analyzer or scanner.
 
+---
 
 # Structure of lex file (*.lex)
 
@@ -15,12 +49,12 @@ Lex is a program that generates lexical analyzer or scanner.
    - define macros, import headers and etc.
 - Rules
    - define regular expressions and the associated C / java / scala code block
-- C code (lex or flex) / java code (jflex)
+- C code (lex or flex) / java code (jFlex)
    - define utility functions which are accessible by rule code blocks
 
 ---
 
-# Concerning lex
+# Concerning Lex
 
 - `YYINITIAL`: initial lexical state of the scanner
 - `yylex()`: special function that returns the matched token
@@ -91,7 +125,13 @@ Lex is a program that generates lexical analyzer or scanner.
         return new Symbol(type, yyline, yycolumn, value);
       }
     %}
+```
 
+---
+
+### Cont.
+
+```lex
     LineTerminator = \r|\n|\r\n
     InputCharacter = [^\r\n]
     WhiteSpace     = {LineTerminator} | [ \t\f]
@@ -106,7 +146,13 @@ Lex is a program that generates lexical analyzer or scanner.
     %state STRING
 
     %%
+```
 
+---
+
+### Cont.
+
+```lex
     <YYINITIAL> "abstract"           { return symbol(sym.ABSTRACT); }
     <YYINITIAL> "boolean"            { return symbol(sym.BOOLEAN); }
     <YYINITIAL> "break"              { return symbol(sym.BREAK); }

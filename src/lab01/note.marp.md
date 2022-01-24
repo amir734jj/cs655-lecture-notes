@@ -1,11 +1,36 @@
-# Welcome to cs655 - 801 (Spring-2022)
+# Welcome to cs655 (Spring-2022)
 ### Seyedamirhossein Hesamian (Amir)
 - Please send email questions to:
   - [boyland@uwm.edu](mailto:boyland@uwm.edu)
   - [hesamian@uwm.edu](mailto:hesamian@uwm.edu)
-- Office hour: TBD
-- Room: EMS 9th floor computer lab
+- Office hour: Tuesday, Wednesday, Thursday via Zoom
+- Room: Zoom
 - Slides: [github.com/amir734jj/cs655-lecture-notes](https://github.com/amir734jj/cs655-lecture-notes)
+
+---
+
+## Greetings :)
+
+- Bachelor, masters, or PhD student?
+- Favorite programming language? and why?
+- Fun software project you worked on?
+
+---
+
+## Pos and cons of taking compiler class:
+
+- 2 minutes rant ...
+
+---
+
+## Undergraduate
+- 30% Laboratory Assignments
+- 70% Programming Assignments
+
+## Graduate
+- 15% Laboratory Assignments
+- **15% Term Paper**
+- 70% Programming Assignments
 
 ---
 
@@ -34,14 +59,16 @@
 
 >--(Parser)-->
                           <Root>
-                  /          |         \
-                <Num, 1> <PlusToken> <Num, 2>
-
+                             |
+                        <PlusToken> 
+                        /         \
+                  <Num, 1>        <Num, 2>
 >--(Semantic)-->
-    Type of <Root>? Int. Because Int + Int = Int
+    Type of <PlusToken>? Int. Because Int + Int = Int
+    Type of <Root>? Int. Because Int = Int
 
 >--(CodeGen)-->
-int result = 1 + 2;
+  int result = 1 + 2;
 ```
 
 ---
@@ -57,8 +84,8 @@ int result = 1 + 2;
 
 # Reading Recommendations
 
-- Cool manual
-- Textbook
+- Cool manual: read this thoroughly, please!
+- Textbook: Michael Scott. Programming Language Pragmatics.
 - Optional textbook: "Dragon Book"
 
 ---
@@ -104,6 +131,12 @@ Exercise: How to break this type system restriction?
 
 --- 
 
+### Solution:
+
+`C` to `Any` and then `Any` to `String` (multi-step)
+
+---
+
 # Cool (Cont.)
 ## More about manifest.
 
@@ -115,7 +148,7 @@ var i : Int = 234;
 
 --- 
 
-# Cool syntax vs Java (part #1)
+### Cool syntax vs Java (part #1)
  
 ```java
 public class HelloWorld {
@@ -139,7 +172,7 @@ class Main() extends IO() {
 
 ---
 
-# Cool syntax vs Java (part #2)
+### Cool syntax vs Java (part #2)
 
 ```java
 public class HelloWorld {
@@ -155,8 +188,10 @@ public class HelloWorld {
 
 ```scala
 class Main() extends IO() {
-    // self keyword is similar to `this`, it's a way to access class scope
-    // == is a syntax sugar for .equals() of Int which is an object
+    // self keyword is similar to `this`, it's a way to
+    // access class scope
+    // == is a syntax sugar for .equals() of Int which
+    // is an object
     def factorial(n : Int) = if (n == 0) 1 else self.factorial(n - 1);
     {
       // Notice how there is no implicit conversion from Int to String unlike java
@@ -166,7 +201,7 @@ class Main() extends IO() {
 ```
 ---
 
-# Cool syntax vs Java (part #3)
+### Cool syntax vs Java (part #3)
 
 ```java
 public class HelloWorld {
@@ -199,7 +234,8 @@ class Main() extends IO() {
 
 # Lab Exercise
 
-Implement `Vector` and `VectorEnumeration`
+- Implement `Vector` and `VectorEnumeration`
+- Assignment #1 is already posted
 
 --- 
 
@@ -229,9 +265,10 @@ We will be using:
 # Concerning `ArrayAny`
 
 We will be using:
-- `.get(Int)`: get array at index
-- `.set(Int, Any)`: set array at index
-- `.resize(Int)`: resizes the array`
+- `new ArrayAny(Int)`: constructor
+- `.get(Int):Any`: get array at index
+- `.set(Int, Any):Any`: set array at index and returns old value
+- `.resize(Int):ArrayAny`: resizes the array
 
 ---
 
