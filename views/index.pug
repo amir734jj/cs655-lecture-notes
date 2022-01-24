@@ -9,9 +9,11 @@ block content
 
         -var index = 0
         each val, key in labs
-          li
-            a(href=`#${key}`, data-toggle='tab') #{key}
-          -index++
+          - if (val.enabled) {
+            li
+              a(href=`#${key}`, data-toggle='tab') #{key}
+          - }
+          - index++
 
       .tab-content.col-md-10
         .tab-pane(id='main', class='active')
