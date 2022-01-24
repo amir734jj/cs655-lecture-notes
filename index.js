@@ -38,7 +38,7 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
 
     labs[labName] = {
       md: md.render(markdown),
-      pdf: path.join(labPath, "note.marp.pdf"),
+      pdf: path.join(labPath.replace('src/', ''), "note.marp.pdf"),
       video: manifest.video,
       enabled: process.env.NODE_ENV === "production" ? manifest.enabled : true,
     };
