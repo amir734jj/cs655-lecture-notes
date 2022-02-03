@@ -105,26 +105,26 @@ Lex is a program that generates lexical analyzer or scanner.
 # Complete lex file
 
 ```lex
-    import java_cup.runtime.*;
+import java_cup.runtime.*;
 
-    %%
+%%
 
-    %class Lexer
-    %unicode
-    %cup
-    %line
-    %column
+%class Lexer
+%unicode
+%cup
+%line
+%column
 
-    %{
-      StringBuffer string = new StringBuffer();
+%{
+ StringBuffer string = new StringBuffer();
 
-      private Symbol symbol(int type) {
-        return new Symbol(type, yyline, yycolumn);
-      }
-      private Symbol symbol(int type, Object value) {
-        return new Symbol(type, yyline, yycolumn, value);
-      }
-    %}
+ private Symbol symbol(int type) {
+   return new Symbol(type, yyline, yycolumn);
+ }
+ private Symbol symbol(int type, Object value) {
+   return new Symbol(type, yyline, yycolumn, value);
+ }
+%}
 ```
 
 ---
@@ -132,20 +132,20 @@ Lex is a program that generates lexical analyzer or scanner.
 ### Cont.
 
 ```lex
-    LineTerminator = \r|\n|\r\n
-    InputCharacter = [^\r\n]
-    WhiteSpace     = {LineTerminator} | [ \t\f]
+LineTerminator = \r|\n|\r\n
+InputCharacter = [^\r\n]
+WhiteSpace     = {LineTerminator} | [ \t\f]
 
-    /* comments */
-    Comment = {EndOfLineComment}
+/* comments */
+Comment = {EndOfLineComment}
 
-    EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
 
-    DecIntegerLiteral = 0 | [1-9][0-9]*
+DecIntegerLiteral = 0 | [1-9][0-9]*
 
-    %state STRING
+%state STRING
 
-    %%
+%%
 ```
 
 ---
@@ -153,42 +153,42 @@ Lex is a program that generates lexical analyzer or scanner.
 ### Cont.
 
 ```lex
-    <YYINITIAL> "abstract"           { return symbol(sym.ABSTRACT); }
-    <YYINITIAL> "boolean"            { return symbol(sym.BOOLEAN); }
-    <YYINITIAL> "break"              { return symbol(sym.BREAK); }
+<YYINITIAL> "abstract"           { return symbol(sym.ABSTRACT); }
+<YYINITIAL> "boolean"            { return symbol(sym.BOOLEAN); }
+<YYINITIAL> "break"              { return symbol(sym.BREAK); }
 
-    <YYINITIAL> {
-      /* literals */
-      {DecIntegerLiteral}            { return symbol(sym.INTEGER_LITERAL); }
-      \"                             { string.setLength(0); yybegin(STRING); }
+<YYINITIAL> {
+ /* literals */
+ {DecIntegerLiteral}            { return symbol(sym.INTEGER_LITERAL); }
+ \"                             { string.setLength(0); yybegin(STRING); }
 
-      /* operators */
-      "="                            { return symbol(sym.EQ); }
-      "=="                           { return symbol(sym.EQEQ); }
-      "+"                            { return symbol(sym.PLUS); }
+ /* operators */
+ "="                            { return symbol(sym.EQ); }
+ "=="                           { return symbol(sym.EQEQ); }
+ "+"                            { return symbol(sym.PLUS); }
 
-      /* comments */
-      {Comment}                      { /* ignore */ }
-     
-      /* whitespace */
-      {WhiteSpace}                   { /* ignore */ }
-    }
+ /* comments */
+ {Comment}                      { /* ignore */ }
 
-    <STRING> {
-      \"                             { yybegin(YYINITIAL); 
-                                       return symbol(sym.STRING_LITERAL, 
-                                       string.toString()); }
-      [^\n\r\"\\]+                   { string.append( yytext() ); }
-      \\t                            { string.append('\t'); }
-      \\n                            { string.append('\n'); }
+ /* whitespace */
+ {WhiteSpace}                   { /* ignore */ }
+}
 
-      \\r                            { string.append('\r'); }
-      \\\"                           { string.append('\"'); }
-      \\                             { string.append('\\'); }
-    }
+<STRING> {
+ \"                             { yybegin(YYINITIAL); 
+                                  return symbol(sym.STRING_LITERAL, 
+                                  string.toString()); }
+ [^\n\r\"\\]+                   { string.append( yytext() ); }
+ \\t                            { string.append('\t'); }
+ \\n                            { string.append('\n'); }
 
-    /* error fallback */
-    [^]                              { throw new Error("Illegal character <"+
-                                                        yytext()+">"); }
+ \\r                            { string.append('\r'); }
+ \\\"                           { string.append('\"'); }
+ \\                             { string.append('\\'); }
+}
+
+/* error fallback */
+[^]                              { throw new Error("Illegal character <"+
+                                                   yytext()+">"); }
 ```
 
