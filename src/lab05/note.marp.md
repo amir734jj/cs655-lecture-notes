@@ -130,11 +130,11 @@ should reduce to eliminate params non-terminal
         param -> type ids
     when ids have definition:
         ids -> id
-    and this params definiton was used:
+    and this params definition was used:
         params -> params ',' param
 
 OR we are still working on ids
-    shift via definiton:
+    shift via definition:
         ids -> ids ',' id
 
 The solution is to remove production:
@@ -206,3 +206,4 @@ Whether we should reduce it to:
 The solution is to remove production:
     type : IDENTIFIER
 -->
+
