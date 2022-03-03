@@ -9,7 +9,7 @@
 
 - Create a class that extends `CoolTreeVisitor`
 - If we have an object of type `CoolTreeNode` then we can use it's `accept
-- Override any visit method of `CoolTreeVisior` to intercept AST node type(<CoolTreeVisitor>)` method
+- Override any visit method of `CoolTreeVisior` to intercept AST node `type(<CoolTreeVisitor>)` method
   - This gives us a way to intercept the node of specific type
   - Do not forget to call `accept(this)` on the argument otherwise traverse will stop for the subsequent nodes  
 
