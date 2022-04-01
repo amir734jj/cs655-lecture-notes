@@ -52,7 +52,7 @@ In the code generation phase, we need to dump the all the literals in `.data` se
   .word -1          # for garbage collector
 int_lit13:          # 13 was incrementor, starting from 0
   .word 5           # class tag number
-  .word 4           # object size, 4 bytes
+  .word 4           # object size, 4 words (or 4 x 4 = 16 bytes)
   .word Int_dispTab # int's dispatch table label
   .word 20          # 20 was the value of the Int object? not sure here
   .word -1          # next one ..
@@ -70,7 +70,7 @@ we need to use their ASCII representation. Also, we should not forget 0 to tell 
   .word -1              # for garbage collector
 string_lit22:           # 22 was incrementor, starting from 0
   .word 3               # class tag number
-  .word 10              # object size, 10 bytes
+  .word 10              # object size, 10 words (or 10 x 4 = 40 bytes)
   .word String_dispTab  # String dispatch table label
   .word int_lit13       # length label of string
   .ascii "Done with 8 queens!"  # text
