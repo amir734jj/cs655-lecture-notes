@@ -5,7 +5,7 @@ Generating MIPS code given a AST
 ---
 # MIPS Registers
 
-MIPS instruction uses 5 bits for register addressing, so there can be 2^5 = 32 registers
+MIPS instruction uses 5 bits for register addressing, so there can be $2^5 = 32$ registers
 
 | **Number** | **Name** | **Use** | **Preserved across function calls?** |
 |:----------:|:--------:|:-------:|:------------------------------------:|
@@ -28,17 +28,17 @@ MIPS instruction uses 5 bits for register addressing, so there can be 2^5 = 32 r
 
 ```MIPS
   # Hello, World! program
-.data ## Data declaration section
-  ## String to be printed:
+.data         # Data declaration section
+              # String to be printed:
   out_string: .asciiz "\nHello, World!\n"
-.text ## Assembly language instructions go in text segment
-  main: ## Start of code section
-  li $v0, 4 # system call code for printing string = 4
+.text         # Assembly language instructions go in text segment
+  main:       # Start of code section
+  li $v0, 4   # system call code for printing string = 4
   la $a0, out_string # load address of string to be printed into $a0
-  syscall # call operating system to perform operation
-  # specified in $v0
-  # syscall takes its arguments from $a0, $a1, ...
-  li $v0, 10 # terminate program
+  syscall     # call operating system to perform operation
+              # specified in $v0
+              # syscall takes its arguments from $a0, $a1, ...
+  li $v0, 10  # terminate program
   syscall
 ```
 

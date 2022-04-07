@@ -12,7 +12,7 @@ For complete detail see Handout8 of cs654
 # evaluate receiver this into 0($fp)
     sw	 $a0 0($fp)
 # foreach actual in actuals
-    # <Evaluate actual>
+  # <Evaluate actual>
     sw $a0, 0($sp)           # store argument
     addiu $sp, $sp, -4       # decrement stack pointer
 # load receiver this into $a0
