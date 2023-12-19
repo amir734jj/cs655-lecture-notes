@@ -24,22 +24,24 @@ docker-build:
     - master
   allow_failure: false
   before_script:
-    - apk --no-cache add curl py3-pip gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+    - apk --no-cache add curl make
+      py3-pip gcc musl-dev cargo
+      python3-devlibffi-dev openssl-dev 
     - pip install --upgrade pip
     - pip install azure-cli
   script:
     - docker build . -t temp
     - docker tag temp $DOCKER_TAG
-    - az login --service-principal    \
-        -t $AZURE_TENANT_ID           \
-        -u $AZURE_CLIENT_ID           \
+    - az login --service-principal
+        -t $AZURE_TENANT_ID
+        -u $AZURE_CLIENT_ID
         -p $AZURE_CLIENT_SECRET
     - az acr login --name $DCOKER_REGISTRY
     - docker push $DOCKER_TAG
-    - az webapp config container set  \
-      --resource-group $AZURE_RG_NAME \
-      --name $AZURE_APP_NAME          \
+    - az webapp config container set
+      --resource-group $AZURE_RG_NAME
+      --name $AZURE_APP_NAME
       --docker-custom-image-name $DOCKER_TAG
-    - az webapp restart               \
-      --resource-group $AZURE_RG_NAME \
+    - az webapp restart
+      --resource-group $AZURE_RG_NAME
       --name $AZURE_APP_NAME
