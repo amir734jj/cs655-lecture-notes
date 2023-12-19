@@ -15,7 +15,6 @@ stages:
   - deploy
 
 docker-build:
-  os
   stage: deploy
   resource_group: azure
   only:
