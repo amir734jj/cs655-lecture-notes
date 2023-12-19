@@ -1,4 +1,7 @@
-image: ubuntu:latest
+image: docker:latest
+services:
+  - name: docker:dind
+    alias: docker
 
 variables:
   AZURE_TENANT_ID: $AZURE_TENANT_ID
@@ -21,8 +24,11 @@ docker-build:
     - master
   allow_failure: false
   before_script:
-    - apt update && apt install -y --no-install-recommends docker.io curl bash
-    - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+    - apk update
+    - apk --no-cache add make bash curl py-pip
+    - apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python- dev
+    - pip install azure-cli
+    - apk del --purge build
   script:
     - docker build . -t temp
     - docker tag temp $DOCKER_TAG
