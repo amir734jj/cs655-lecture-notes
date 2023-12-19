@@ -4,7 +4,9 @@ services:
     alias: docker
 
 variables:
-  HEROKU_API_KEY: $HEROKU_TOKEN
+  AZURE_TENANT_ID: $AZURE_TENANT_ID
+  AZURE_CLIENT_ID: $AZURE_CLIENT_ID
+  AZURE_CLIENT_SECRET: $AZURE_CLIENT_SECRET
   AZURE_APP_NAME: "cs655"
   AZURE_RG_NAME: "docker-apps"
   DOCKER_TLS_CERTDIR: ""
@@ -27,7 +29,10 @@ docker-build:
   script:
     - docker build . -t temp
     - docker tag temp $DOCKER_TAG
-    - az login
+    - az login --service-principal    \
+        -t $AZURE_TENANT_ID           \
+        -u $AZURE_CLIENT_ID           \
+        -p $AZURE_CLIENT_SECRET
     - az acr login --name $DCOKER_REGISTRY
     - docker push $DOCKER_TAG
     - az webapp config container set  \
