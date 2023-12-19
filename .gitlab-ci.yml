@@ -13,6 +13,7 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DCOKER_REGISTRY: "hesamian.azurecr.io"
   DOCKER_TAG: "hesamian.azurecr.io/cs655"
+  DOCKER_TAG_SUFFIX: "latest"
 
 stages:
   - deploy
@@ -31,17 +32,17 @@ docker-build:
     - pip install azure-cli
   script:
     - docker build . -t temp
-    - docker tag temp $DOCKER_TAG:$CI_COMMIT_SHA
+    - docker tag temp $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az login --service-principal
         -t $AZURE_TENANT_ID
         -u $AZURE_CLIENT_ID
         -p $AZURE_CLIENT_SECRET
     - az acr login --name $DCOKER_REGISTRY
-    - docker push $DOCKER_TAG
+    - docker push $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az webapp config container set
       --resource-group $AZURE_RG_NAME
       --name $AZURE_APP_NAME
-      --docker-custom-image-name $DOCKER_TAG:$CI_COMMIT_SHA
+      --docker-custom-image-name $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az webapp restart
       --resource-group $AZURE_RG_NAME
       --name $AZURE_APP_NAME

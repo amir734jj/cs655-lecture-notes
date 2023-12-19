@@ -17,11 +17,47 @@
 
 ---
 
-## Pos and cons of taking compiler class:
+## Pos and cons of taking compiler class
 
-- 2 minutes rant ...
+- 2 minutes rant about Amir's story
+  - finished B.S. in 2015
+  - finished M.S. in 2017
+  - took compilers in Spring-2018
+    - started Ph.D. in 2018 in Compilers with Prof. Boyland
+    - started working at Microsoft in 2021
+    - completed Ph.D. in 2023
+- this class helped my career by a lot
+- similar workload as cs351
 
 ---
+
+## Relevance and Up-to-Date
+
+### TL;DR: **YES**
+
+JFlex, Bison, ANTLR are still **very much used**
+
+---
+
+## Workload and Gains at the end of semester
+
+- Compilers has a High workload **But**:
+  - Best case scenario: ???
+  - Worst case scenario: ???
+- What about other areas like machine learning:
+  - Best case scenario: ???
+  - Worst case scenario: ???
+
+---
+
+## Collaboration
+
+- We **welcome** collaboration
+- NEVER copy/paste
+- Show your work
+
+---
+
 
 ## Undergraduate
 - 30% Laboratory Assignments
