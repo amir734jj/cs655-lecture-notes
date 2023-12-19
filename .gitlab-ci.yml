@@ -11,8 +11,8 @@ variables:
   AZURE_RG_NAME: "docker-apps"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_HOST: "tcp://docker:2375"
-  DOCKER_REGISTRY: "hesamian.azurecr.io"
-  DOCKER_TAG: "hesamian.azurecr.io/cs655"
+  DOCKER_REGISTRY: "hesamian"
+  DOCKER_TAG: "$DOCKER_REGISTRY.azurecr.io/$AZURE_APP_NAME"
   DOCKER_TAG_SUFFIX: "latest"
 
 stages:
