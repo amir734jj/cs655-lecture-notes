@@ -1,7 +1,4 @@
-image: docker:latest
-services:
-  - name: docker:dind
-    alias: docker
+image: ubuntu:latest
 
 variables:
   AZURE_TENANT_ID: $AZURE_TENANT_ID
@@ -18,13 +15,14 @@ stages:
   - deploy
 
 docker-build:
+  os
   stage: deploy
   resource_group: azure
   only:
     - master
   allow_failure: false
   before_script:
-    - apk --no-cache add curl bash
+    - apt update && apt install -y --no-install-recommends docker.io curl bash
     - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
   script:
     - docker build . -t temp
