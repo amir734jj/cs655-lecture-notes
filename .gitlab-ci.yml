@@ -1,4 +1,4 @@
-image: docker:latest
+image: docker:stable
 services:
   - name: docker:dind
     alias: docker
@@ -24,11 +24,9 @@ docker-build:
     - master
   allow_failure: false
   before_script:
-    - apk update
-    - apk --no-cache add make bash curl py-pip
-    - apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python- dev
+    - apk --no-cache add curl py3-pip gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+    - pip install --upgrade pip
     - pip install azure-cli
-    - apk del --purge build
   script:
     - docker build . -t temp
     - docker tag temp $DOCKER_TAG
