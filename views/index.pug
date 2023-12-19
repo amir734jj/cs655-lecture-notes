@@ -27,7 +27,7 @@ block content
           h3 Personal Lab Notes
           a(href='http://www.cs.uwm.edu/classes/cs655')
             h4 CS655: Compiler Implementation Laboratory 
-          p Spring 2022
+          p Spring 2024
           p Seyedamirhossein Hesamian
             .btn-group
               a.btn.btn-default(href='https://www.linkedin.com/in/hesamian/', target='_blank')
@@ -67,7 +67,7 @@ block content
           - if (val.enabled) {
             .tab-pane(id=key)
               .container-fluid
-                a.btn.btn-default.pull-right(href=`${val.pdf}`, style="margin-bottom: 1rem") Download PDF
+                a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
 
               - if (val.video) {
                 .container-fluid

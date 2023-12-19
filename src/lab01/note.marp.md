@@ -1,10 +1,10 @@
-# Welcome to cs655 (Spring-2022)
-### Seyedamirhossein Hesamian (Amir)
+# Welcome to cs655 (Spring-2024)
+### Seyedamirhossein Hesamian (Amir), Ph.D.
 - Please send email questions to:
   - [boyland@uwm.edu](mailto:boyland@uwm.edu)
   - [hesamian@uwm.edu](mailto:hesamian@uwm.edu)
-- Office hour: Tuesday, Wednesday, Thursday via Zoom
-- Room: Zoom
+- Office hour: TBD or via Teams
+- Room: TBD or via Teams
 - Slides: [github.com/amir734jj/cs655-lecture-notes](https://github.com/amir734jj/cs655-lecture-notes)
 
 ---

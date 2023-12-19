@@ -1,0 +1,39 @@
+image: docker:latest
+services:
+  - name: docker:dind
+    alias: docker
+
+variables:
+  HEROKU_API_KEY: $HEROKU_TOKEN
+  AZURE_APP_NAME: "cs655"
+  AZURE_RG_NAME: "docker-apps"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: "tcp://docker:2375"
+  DCOKER_REGISTRY: "hesamian.azurecr.io"
+  DOCKER_TAG: "hesamian.azurecr.io/cs655"
+
+stages:
+  - deploy
+
+docker-build:
+  stage: deploy
+  resource_group: azure
+  only:
+    - master
+  allow_failure: false
+  before_script:
+    - apk --no-cache add curl bash
+    - curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+  script:
+    - docker build . -t temp
+    - docker tag temp $DOCKER_TAG
+    - az login
+    - az acr login --name $DCOKER_REGISTRY
+    - docker push $DOCKER_TAG
+    - az webapp config container set  \
+      --resource-group $AZURE_RG_NAME \
+      --name $AZURE_APP_NAME          \
+      --docker-custom-image-name $DOCKER_TAG
+    - az webapp restart               \
+      --resource-group $AZURE_RG_NAME \
+      --name $AZURE_APP_NAME

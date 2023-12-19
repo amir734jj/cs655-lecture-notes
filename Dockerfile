@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY . .
 COPY --from=build-pdf /usr/src/app/src ./src
 RUN npm install
+ENV NODE_ENV=production
 EXPOSE 80
 ENTRYPOINT ["/usr/bin/env"]
 CMD ["npm", "start"]
