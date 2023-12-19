@@ -24,9 +24,9 @@ docker-build:
     - master
   allow_failure: false
   before_script:
-    - apk --no-cache add curl make
-      py3-pip gcc musl-dev cargo
-      python3-devlibffi-dev openssl-dev 
+    - apk --no-cache add curl py3-pip
+      gcc musl-dev python3-dev libffi-dev
+      openssl-dev cargo make
     - pip install --upgrade pip
     - pip install azure-cli
   script:
