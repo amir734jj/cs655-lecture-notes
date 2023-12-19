@@ -31,7 +31,7 @@ docker-build:
     - pip install azure-cli
   script:
     - docker build . -t temp
-    - docker tag temp $DOCKER_TAG
+    - docker tag temp $DOCKER_TAG:$CI_COMMIT_SHA
     - az login --service-principal
         -t $AZURE_TENANT_ID
         -u $AZURE_CLIENT_ID
@@ -41,7 +41,7 @@ docker-build:
     - az webapp config container set
       --resource-group $AZURE_RG_NAME
       --name $AZURE_APP_NAME
-      --docker-custom-image-name $DOCKER_TAG
+      --docker-custom-image-name $DOCKER_TAG:$CI_COMMIT_SHA
     - az webapp restart
       --resource-group $AZURE_RG_NAME
       --name $AZURE_APP_NAME
