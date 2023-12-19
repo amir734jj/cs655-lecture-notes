@@ -11,7 +11,7 @@ variables:
   AZURE_RG_NAME: "docker-apps"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_HOST: "tcp://docker:2375"
-  DCOKER_REGISTRY: "hesamian.azurecr.io"
+  DOCKER_REGISTRY: "hesamian.azurecr.io"
   DOCKER_TAG: "hesamian.azurecr.io/cs655"
   DOCKER_TAG_SUFFIX: "latest"
 
@@ -37,7 +37,7 @@ docker-build:
         -t $AZURE_TENANT_ID
         -u $AZURE_CLIENT_ID
         -p $AZURE_CLIENT_SECRET
-    - az acr login --name $DCOKER_REGISTRY
+    - az acr login --name $DOCKER_REGISTRY
     - docker push $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az webapp config container set
       --resource-group $AZURE_RG_NAME
