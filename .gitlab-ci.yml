@@ -26,8 +26,8 @@ docker-build:
   allow_failure: false
   before_script:
     - apk --no-cache add curl py3-pip
-      gcc musl-dev python3-dev libffi-dev
-      openssl-dev cargo make
+        gcc musl-dev python3-dev libffi-dev
+        openssl-dev cargo make
     - pip install --upgrade pip
     - pip install azure-cli
   script:
@@ -40,9 +40,9 @@ docker-build:
     - az acr login --name $DOCKER_REGISTRY
     - docker push $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az webapp config container set
-      --resource-group $AZURE_RG_NAME
-      --name $AZURE_APP_NAME
-      --docker-custom-image-name $DOCKER_TAG:$DOCKER_TAG_SUFFIX
+        --resource-group $AZURE_RG_NAME
+        --name $AZURE_APP_NAME
+        --docker-custom-image-name $DOCKER_TAG:$DOCKER_TAG_SUFFIX
     - az webapp restart
-      --resource-group $AZURE_RG_NAME
-      --name $AZURE_APP_NAME
+        --resource-group $AZURE_RG_NAME
+        --name $AZURE_APP_NAME
