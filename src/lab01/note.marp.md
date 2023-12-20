@@ -11,7 +11,7 @@
 
 ## Greetings :)
 
-- Bachelor, masters, or PhD student?
+- Bachelor, masters, or Ph.D. student?
 - Favorite programming language? and why?
 - Fun software project you worked on?
 
@@ -44,7 +44,7 @@ JFlex, Bison, ANTLR are still **very much used**
 - Compilers has a High workload **But**:
   - Best case scenario: ???
   - Worst case scenario: ???
-- What about other areas like machine learning:
+- What about other CS areas (e.g. machine learning):
   - Best case scenario: ???
   - Worst case scenario: ???
 

@@ -119,7 +119,7 @@ Productions: 0
 
 ## SR LR(1) parse table
 
-![height:15cm](assets/sr-parse-table.png)
+![height:15cm](../assets/sr-parse-table.png)
 
 <!--
 SR Solution
@@ -190,7 +190,7 @@ Productions: 0
 
 # RR LR(1) parse table
 
-![height:15cm](assets/rr-parse-table.png)
+![height:15cm](../assets/rr-parse-table.png)
 
 <!--
 We don't know after seeing:

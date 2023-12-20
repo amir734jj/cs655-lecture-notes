@@ -103,32 +103,32 @@ Let's try to construct the AST for the following cool program
 # Solution
 
 ```text
-          @265 = block:22 
-              @264 = let:22 'i 'Int 
-                @240 = int_lit:12 '0 
-                @263 = block:22 
-                    @262 = let:22 'b 'Boolean 
-                      @241 = bool_lit:13 false 
-                      @261 = block:22 
-                          @260 = loop:22 
-                            @244 = lt:14 
-                              @242 = variable:14 'i 
-                              @243 = int_lit:14 '20 
-                            @259 = block:21 
-                                @251 = cond:17 
-                                  @245 = variable:15 'b 
-                                  @249 = block:17 
-                                      @248 = dispatch:17 'out 
-                                        @247 = variable:17 'this 
-                                          @246 = string_lit:16 'Pow! 
-                                  @250 = unit:17 
-                                @254 = assign:19 'b 
-                                  @253 = comp:19 
-                                    @252 = variable:19 'b 
-                                @258 = assign:21 'i 
-                                  @257 = add:21 
-                                    @255 = variable:20 'i 
-                                    @256 = int_lit:21 '1 
+@265 = block:22 
+  @264 = let:22 'i 'Int 
+    @240 = int_lit:12 '0 
+    @263 = block:22 
+        @262 = let:22 'b 'Boolean 
+          @241 = bool_lit:13 false 
+          @261 = block:22 
+              @260 = loop:22 
+                @244 = lt:14 
+                  @242 = variable:14 'i 
+                  @243 = int_lit:14 '20 
+                @259 = block:21 
+                    @251 = cond:17 
+                      @245 = variable:15 'b 
+                      @249 = block:17 
+                          @248 = dispatch:17 'out 
+                            @247 = variable:17 'this 
+                              @246 = string_lit:16 'Pow! 
+                      @250 = unit:17 
+                    @254 = assign:19 'b 
+                      @253 = comp:19 
+                        @252 = variable:19 'b 
+                    @258 = assign:21 'i 
+                      @257 = add:21 
+                        @255 = variable:20 'i 
+                        @256 = int_lit:21 '1 
 ```
 
 ---

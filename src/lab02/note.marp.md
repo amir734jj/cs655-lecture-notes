@@ -6,7 +6,7 @@ Tokenizing stream of characters using regular expressions
 
 ### Lexer > Regex
 
-- Lexers use Regular expressions.
+- Lexers use Regular expressions
 - regular expression is greedy meaning that: longest match always!
 - use negative rule to prevent non-greedy behavior: `\"[^"]\"`
 - in ANTLR there is a designated non-greedy operator `?` (e.g. `+?`, `*?`, or `??`)
@@ -27,9 +27,9 @@ Result:
 
 ```shell
 >>> "a\"b""c\d"""
-Found it: : "a\"b"
-Found it: : "c\d"
-Found it: : ""
+Found it: "a\"b"
+Found it: "c\d"
+Found it: ""
 
 > "\"
 Error: "\"

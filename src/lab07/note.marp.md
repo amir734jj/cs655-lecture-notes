@@ -8,7 +8,8 @@ Compiler optimization and exercise of AST modification
 
 - The idea is trying to evaluate constant expressions in a compile-time as oppose to run-time **when** we have all things we need to evaluate it.
 
-- For example given `var i : Int = 3 * 4 + 2;`. We should be able to replace `i`'s RHS expression with "14". 
+- For example given `var i : Int = 3 * 4 + 2;`
+  - We should be able to replace `i`'s RHS expression with "14". 
 
 - Remember AST is immutable so we need to return a new AST
 
@@ -16,7 +17,7 @@ Compiler optimization and exercise of AST modification
 
 # How to accomplish it?
 
-Using visistor pattern and modifying the AST by returning a updated node
+Using visitor pattern and modifying the AST by returning a updated node
 
 ---
 

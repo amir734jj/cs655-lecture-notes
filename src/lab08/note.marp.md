@@ -34,6 +34,7 @@ To get classes that extend class `Foo`, i.e. `Bar` & `Baz` we need to invert the
 ```
 val inverted: Map[String, List[String]] = table
     .groupBy(_._2)                          // GroupBy value
+                                            // OR .groupBy(x => x._2)
     .map(x => x._1 -> x._2.values.toList)   // _1 is the old value, _2 is the is keys
     .toMap                                  // Create a map 
 ```
@@ -48,7 +49,7 @@ val inverted: Map[String, List[String]] = table
 
 # How case works in the code generation
 
-```
+```scala
 Note:
     (pre-order number, max pre-order number)
     

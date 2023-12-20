@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/amir734jj/cs655-lecture-notes#readme",
   "dependencies": {
-    "@marp-team/marp-cli": "^1.4.1",
+    "@marp-team/marp-cli": "^3.4.0",
     "chrome-launcher": "^0.14.1",
     "execa": "^5.1.1",
     "express": "^4.17.1",
