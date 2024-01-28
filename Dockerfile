@@ -4,7 +4,7 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-FROM docker:dind AS web-server
+FROM boylanduwm/cool-compiler:latest AS web-server
 WORKDIR /usr/src/app
 RUN apk update && \
     apk add nodejs npm
