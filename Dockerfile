@@ -4,8 +4,10 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-FROM node:lts-alpine AS web-server
+FROM docker:dind AS web-server
 WORKDIR /usr/src/app
+RUN apk update && \
+    apk add nodejs npm
 COPY . .
 COPY --from=build-pdf /usr/src/app/src ./src
 RUN npm install

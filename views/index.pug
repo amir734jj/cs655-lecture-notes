@@ -5,7 +5,7 @@ block content
     .tabbable
       ul.nav.nav-pills.nav-stacked.col-md-2
         li
-          a(href='#main', data-toggle='tab') Welcome
+          a(href='#main' data-toggle='tab') Welcome
 
         -var index = 0
         each val, key in labs
@@ -16,13 +16,13 @@ block content
           - index++
 
       .tab-content.col-md-10
-        .tab-pane(id='main', class='active')
+        .tab-pane(id='main' class='active')
           .alert.alert-warning
             strong Warning!
             |  This is 
             strong NOT
             |  official class website. Visit the 
-            a(href="https://uwm.edu/canvas/home/", target="_blank") Canvas  
+            a(href="https://uwm.edu/canvas/home/" target="_blank") Canvas  
             | instead!
           h3 Personal Lab Notes
           a(href='http://www.cs.uwm.edu/classes/cs655')
@@ -30,34 +30,37 @@ block content
           p Spring 2024
           p Seyedamirhossein Hesamian
             .btn-group
-              a.btn.btn-default(href='https://www.linkedin.com/in/hesamian/', target='_blank')
+              a.btn.btn-default(href='https://www.linkedin.com/in/hesamian/' target='_blank')
                 i.fa.fa-github(aria-hidden='true')
-              a.btn.btn-default(href='https://github.com/amir734jj', target='_blank')
+              a.btn.btn-default(href='https://github.com/amir734jj' target='_blank')
                 i.fa.fa-linkedin(aria-hidden='true')
-              a.btn.btn-default(href='mailto:hesamian@uwm.edu', target='_blank')
+              a.btn.btn-default(href='mailto:hesamian@uwm.edu' target='_blank')
                 i.fa.fa-envelope(aria-hidden='true')
 
-          h3
+          a.btn.btn-default.btn-lg(href='/coolc' target='_blank', style="margin: 1rem 0")
+            code 
+              | coolc
+
           .row
             .col-md-4
               .thumbnail
-                a.img-responsive(href='https://docs.scala-lang.org/', target='_blank')
+                a.img-responsive(href='https://docs.scala-lang.org/' target='_blank')
                   img(src='/public/scala.svg' alt='Scala' style='height:10rem')
                   .caption
                     p(style="text-align: center") Scala programming language
             .col-md-4
               .thumbnail
-                a.img-responsive(href='https://github.com/djspiewak/scala-bison', target='_blank')
+                a.img-responsive(href='https://github.com/djspiewak/scala-bison' target='_blank')
                   img(src='/public/bison.svg' alt='Bison' style='height:10rem')
                   .caption
                     p(style="text-align: center") Scala/Bison/Lex for lexer and parser
             .col-md-4
               .thumbnail
-                a(href='https://en.wikipedia.org/wiki/Cool_(programming_language)', target='_blank')
+                a(href='https://en.wikipedia.org/wiki/Cool_(programming_language)' target='_blank')
                   img.img-responsive(src='/public/cool.svg' alt='Cool' style='height:10rem')
                   .caption
                     p(style="text-align: center") Cool programming language
-          
+
           hr
           .row
             #diagram(style="text-align: center")
@@ -72,8 +75,8 @@ block content
               - if (val.video) {
                 .container-fluid
                   .embed-responsive.embed-responsive-16by9
-                    iframe.embed-responsive-item(width='560', height='315', src=`${val.video}`, frameborder='0', allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture', allowfullscreen='')
-                  
+                    iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+
                   hr
               - }
 

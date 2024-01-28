@@ -4,6 +4,8 @@ var fs = require("fs");
 var glob = require("glob");
 var MarkdownIt = require("markdown-it");
 var hljs = require("highlight.js");
+var bodyParser = require("body-parser");
+const { exec } = require('child_process');
 
 var app = express();
 
@@ -47,6 +49,8 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
 
 app.use(express.static("src"));
 app.use("/public", express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set("view engine", "pug");
 
@@ -54,4 +58,26 @@ app.get("/", (req, res) => {
   res.render("index", { labs });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.get("/coolc", (req, res) => {
+  res.render("coolc", {
+    code:
+      'class Main() extends IO() {\n' +
+      '  {\n' +
+      '    out_any("hello world\\n")\n' +
+      '  };\n' +
+      '}'
+  });
+});
+
+app.post("/coolc", (req, res) => {
+  const escapedCode = req.body.code
+    .replace(/"/g, '\\"');
+
+  const command = `docker run --rm -w /root boylanduwm/cool-compiler sh -c "echo '${escapedCode}' > temp.cool && coolc temp.cool && coolspim temp.s"`;
+
+  exec(command, (_, stdout, stderr) => {
+    res.render("coolc", { result: `${stdout}\n${stderr}`.trim(), code: req.body.code });
+  });
+});
+
+app.listen(port, () => console.log(`app listening on port ${port}!`));
