@@ -70,10 +70,7 @@ app.get("/coolc", (req, res) => {
 });
 
 app.post("/coolc", (req, res) => {
-  const escapedCode = req.body.code
-    .replace(/"/g, '\\"');
-
-  const command = `echo '${escapedCode}' > temp.cool && coolc temp.cool && coolspim temp.s`;
+  const command = `echo '${req.body.code}' > temp.cool && coolc temp.cool && coolspim temp.s`;
 
   exec(command, (_, stdout, stderr) => {
     res.render("coolc", { result: `${stdout}\n${stderr}`.trim(), code: req.body.code });
