@@ -104,7 +104,7 @@ Lex is a program that generates lexical analyzer or scanner.
 
 # Example of a complete lex file
 
-this is from an internet
+This is from internet
 
 ```lex
 import java_cup.runtime.*;
