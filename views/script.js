@@ -6,9 +6,14 @@ $(document).ready(function () {
   $("#cool").on("submit", function (evt) {
     evt.preventDefault();
     var request = $(this).serialize();
+    var submitButton = $(this).find(':submit');
+
     $("#cool-spiner").show();
+    submitButton.prop('disabled', true);
+
     $.post("/coolc", request, function (data) {
       $("#cool-spiner").hide();
+      submitButton.prop('disabled', false);
       $("#result").show().html(data.result);
     });
   });
