@@ -1,3 +1,45 @@
 .clearfix {
   margin-bottom: 2rem;
 }
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+.glyphicon-refresh-animate {
+  -webkit-animation: spin .7s infinite linear;
+  animation: spin .7s infinite linear;
+  /* Use the standard rule */
+}
+
+@-webkit-keyframes spin {
+  /* Define the standard keyframes */
+  from {
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    /* Use standard transform */
+  }
+
+  to {
+    -webkit-transform: scale(1) rotate(360deg);
+    transform: scale(1) rotate(360deg);
+    /* Use standard transform */
+  }
+}
+
+@keyframes spin {
+  /* Define the standard keyframes */
+  from {
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    /* Use standard transform */
+  }
+
+  to {
+    -webkit-transform: scale(1) rotate(360deg);
+    transform: scale(1) rotate(360deg);
+    /* Use standard transform */
+  }
+}

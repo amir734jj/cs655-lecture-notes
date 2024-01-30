@@ -64,7 +64,7 @@ block content
             #diagram(style="text-align: center")
 
         .tab-pane(id='coolc')
-          form(id="code")
+          form(id="cool")
             .form-group
               label(for='comment') COOL code:
               textarea#comment.form-control(rows='12' style='font-family:monospace;', name="code")
@@ -72,9 +72,12 @@ block content
 
             button.btn.btn-default(type='submit') Submit
 
-            br
+            div(style="margin-top:2rem")
+              button.btn.btn-warning(style="display:none", id="cool-spiner")
+                span.glyphicon.glyphicon-refresh.glyphicon-refresh-animate
+                |  Loading...
 
-            pre(style="display:none", id="result")
+              pre(style="display:none", id="result")
 
         each val, key in labs
           - if (val.enabled) {
