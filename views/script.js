@@ -3,6 +3,14 @@ $(document).ready(function () {
     window.location.hash = $(this).attr("href");
   });
 
+  $("#cool").on("submit", function(evt) {
+    evt.preventDefault();
+    var request = $(this).serialize();
+    $.post("/coolc", request, function(data) {
+      $("#result").show().val(data);
+    });
+  });
+
   if (window.location.hash) {
     $("[href='%s']".replace("%s", window.location.hash)).trigger("click");
   }
