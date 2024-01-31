@@ -47,12 +47,6 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
   });
 });
 
-const defaultCoolCode = 'class Main() extends IO() {\n' +
-  '  {\n' +
-  '    out_any("hello world\\n")\n' +
-  '  };\n' +
-  '}';
-
 app.use(express.static("src"));
 app.use("/public", express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -61,7 +55,7 @@ app.use(bodyParser.json());
 app.set("view engine", "pug");
 
 app.get("/", (req, res) => {
-  res.render("index", { labs, defaultCoolCode });
+  res.render("index", { labs });
 });
 
 app.post("/coolc", (req, res) => {
