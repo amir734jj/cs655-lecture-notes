@@ -68,7 +68,7 @@ block content
             .form-group
               label(for='comment') COOL code:
 
-              #container(style='width:800px;height:600px;border:1px solid grey')
+              #editor-container(style='width:800px;height:600px;border:1px solid grey')
 
             button.btn.btn-default(type='submit') Run
 
@@ -82,18 +82,20 @@ block content
         each val, key in labs
           - if (val.enabled) {
             .tab-pane(id=key)
-              .container-fluid
-                a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
+              .lazyload
+                script(type='text/lazyload')
+                  .container-fluid
+                    a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
 
-              - if (val.video) {
-                .container-fluid
-                  .embed-responsive.embed-responsive-16by9
-                    iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  - if (val.video) {
+                    .container-fluid
+                      .embed-responsive.embed-responsive-16by9
+                        iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
 
-                  hr
-              - }
+                      hr
+                  - }
 
-              .container-fluid 
-                |!{val.md}
+                  .container-fluid 
+                    |!{val.md}
           - }
           -index++

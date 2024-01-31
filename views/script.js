@@ -56,9 +56,22 @@ $(document).ready(function () {
 
   require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' }});
   require(['vs/editor/editor.main'], function() {
-      self.editor = monaco.editor.create(document.getElementById('container'), {
-          value: defaultCoolCode,
-          language: 'scala'
-      });
-  });  
+      self.timer = setInterval(function() {
+        if ($("#editor-container").is(":visible")) {
+          self.editor = monaco.editor.create(document.getElementById('editor-container'), {
+            value: defaultCoolCode,
+            language: 'scala'
+          });
+
+
+          clearInterval(self.timer);
+        }
+      }, 100);
+  });
+
+  $('.lazyload').lazyload({
+    threshold: 200,
+    load: function(element) {},
+    trigger: "appear"
+  });
 });
