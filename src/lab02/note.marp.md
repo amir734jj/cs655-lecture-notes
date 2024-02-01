@@ -9,7 +9,7 @@ Tokenizing stream of characters using regular expressions
 - Lexers use Regular expressions
 - regular expression is greedy meaning that: longest match always!
 - use negative rule to prevent non-greedy behavior: `\"[^"]\"`
-- in ANTLR there is a designated non-greedy operator `?` (e.g. `+?`, `*?`, or `??`)
+- **only in ANTLR** there is a designated non-greedy operator `?` (e.g. `+?`, `*?`, or `??`)
 
 ---
 
