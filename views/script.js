@@ -1,14 +1,27 @@
 $(document).ready(function () {
+  var self = {};
+
   $("ul.nav.nav-pills li a").click(function () {
     window.location.hash = $(this).attr("href");
   });
 
   $("#cool").on("submit", function (evt) {
     evt.preventDefault();
-    var request = $(this).serialize();
+    var request = {
+      code: self.editor.getValue()
+    };
+    var submitButton = $(this).find(':submit');
+
+    self.editor.updateOptions({ readOnly: true });
+    submitButton.prop('disabled', true);
     $("#cool-spiner").show();
+
     $.post("/coolc", request, function (data) {
       $("#cool-spiner").hide();
+      
+      submitButton.prop('disabled', false);
+      self.editor.updateOptions({ readOnly: false });
+
       $("#result").show().html(data.result);
     });
   });
@@ -34,4 +47,31 @@ $(document).ready(function () {
 
   var diagram = flowchart.parse(text);
   diagram.drawSVG("diagram");
+
+  const defaultCoolCode = 'class Main() extends IO() {\n' +
+  '  {\n' +
+  '    out_any("hello world\\n")\n' +
+  '  };\n' +
+  '}';
+
+  require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' }});
+  require(['vs/editor/editor.main'], function() {
+      self.timer = setInterval(function() {
+        if ($("#editor-container").is(":visible")) {
+          self.editor = monaco.editor.create(document.getElementById('editor-container'), {
+            value: defaultCoolCode,
+            language: 'scala'
+          });
+
+
+          clearInterval(self.timer);
+        }
+      }, 100);
+  });
+
+  $('.lazyload').lazyload({
+    threshold: 200,
+    load: function(element) {},
+    trigger: "appear"
+  });
 });

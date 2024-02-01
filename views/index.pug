@@ -67,13 +67,13 @@ block content
           form(id="cool")
             .form-group
               label(for='comment') COOL code:
-              textarea#comment.form-control(rows='12' style='font-family:monospace;', name="code")
-                |!{defaultCoolCode}
 
-            button.btn.btn-default(type='submit') Submit
+              #editor-container(style='width:800px;height:600px;border:1px solid grey')
+
+            button.btn.btn-default(type='submit') Run
 
             div(style="margin-top:2rem")
-              button.btn.btn-warning(style="display:none", id="cool-spiner")
+              button.btn.btn-warning(style="display:none; margin-bottom: 1rem;", id="cool-spiner")
                 span.glyphicon.glyphicon-refresh.glyphicon-refresh-animate
                 |  Loading...
 
@@ -82,18 +82,20 @@ block content
         each val, key in labs
           - if (val.enabled) {
             .tab-pane(id=key)
-              .container-fluid
-                a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
+              .lazyload
+                script(type='text/lazyload')
+                  .container-fluid
+                    a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
 
-              - if (val.video) {
-                .container-fluid
-                  .embed-responsive.embed-responsive-16by9
-                    iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                  - if (val.video) {
+                    .container-fluid
+                      .embed-responsive.embed-responsive-16by9
+                        iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
 
-                  hr
-              - }
+                      hr
+                  - }
 
-              .container-fluid 
-                |!{val.md}
+                  .container-fluid 
+                    |!{val.md}
           - }
           -index++

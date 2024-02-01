@@ -1,27 +1,32 @@
 doctype html
 html(lang='en')
-    head
-        title cs655-lecture-notes
-        meta(charset='utf-8')
-        meta(name='viewport' content='width=device-width, initial-scale=1')
+  head
+    title cs655-lecture-notes
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
 
-        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css')
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
-        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js')
 
-        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.19.1/styles/github.min.css')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.19.1/highlight.min.js')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.19.1/styles/github.min.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.19.1/highlight.min.js')
 
-        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
 
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js')
-    body
-        .container(style="margin-top: 2rem")
-            block content
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js')
 
-    style 
-      include style.css
+    script(src='https://raw.githack.com/emn178/jquery-lazyload-any/master/src/jquery.lazyload-any.js')
+    script(src='https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js')
+  body
+    .container(style="margin-top: 2rem")
+      block content
 
-    script
-      include script.js
+  style 
+    include style.css
+
+  script
+    include script.js
+
+  
