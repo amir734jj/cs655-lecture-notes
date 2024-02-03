@@ -7,6 +7,9 @@ var hljs = require("highlight.js");
 var bodyParser = require("body-parser");
 const { exec } = require('child_process');
 
+// Start date of the semester
+var startTime = new Date('2024-01-20T10:00:00Z');
+
 var app = express();
 
 var port = process.env.PORT || 3000;
@@ -38,11 +41,14 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
       .readFileSync(path.join(labPath, "note.marp.md"))
       .toString();
 
+    // Calculate the target time by adding n * 7 days to the start time
+    var targetTime = new Date(startTime.getTime() + (manifest.index - 1) * 7 * 24 * 60 * 60 * 1000);
+
     labs[labName] = {
       md: md.render(markdown),
       pdf: path.join(labPath.replace('src/', ''), "note.marp.pdf"),
       video: manifest.video,
-      enabled: process.env.NODE_ENV === "production" ? manifest.enabled : true,
+      enabled: process.env.NODE_ENV === "production" ? (new Date() > targetTime) : true,
     };
   });
 });
