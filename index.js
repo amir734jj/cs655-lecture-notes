@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 const { exec } = require('child_process');
 
 // Start date of the semester
-var startTime = new Date('2024-01-20T10:00:00Z');
+var startTime = new Date('2024-01-18T10:00:00Z');
 
 var app = express();
 
