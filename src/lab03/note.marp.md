@@ -118,3 +118,87 @@ declarator:
 </if>
 ```
 
+---
+
+XML Lexer DFA
+
+```
+flowchart LR
+    INITIAL[Initial State]
+    TAG[TAG]
+    TAG_OPEN[TAG_OPEN]
+    TAG_OPENE[TAG_OPENE]
+    OPENEDONE[OPENEDONE]
+    ATTR1[ATTR1]
+    ATTR2[ATTR2]
+    DQSTRING[DQSTRING]
+    SQSTRING[SQSTRING]
+    CDATA[CDATA]
+
+    INITIAL -->|`{Comment}`| INITIAL
+    INITIAL -->|`<![CDATA[`| CDATA
+    INITIAL -->|"</"| TAG_OPENE
+    INITIAL -->|"<"| TAG_OPEN
+    INITIAL -->|`"&"{NAME}";"`| INITIAL
+    INITIAL -->|`"&"{NAME}?`| INITIAL
+    INITIAL -->|`[^<&]+`| INITIAL
+    INITIAL -->|`<<EOF>>`| INITIAL
+
+    TAG_OPEN -->|`{NEWLINE}`| TAG_OPEN
+    TAG_OPEN -->|`{WHITESPACE}+`| TAG_OPEN
+    TAG_OPEN -->|`{NAME}`| TAG
+    TAG_OPEN -->|`.`| YYINITIAL
+    TAG_OPEN -->|`<<EOF>>`| YYINITIAL
+
+    TAG_OPENE -->|`{NEWLINE}`| TAG_OPENE
+    TAG_OPENE -->|`{WHITESPACE}+`| TAG_OPENE
+    TAG_OPEN -->|`{NAME}`| OPENEDONE
+    TAG_OPEN -->|`.`| YYINITIAL
+    TAG_OPEN -->|`<<EOF>>`| YYINITIAL
+
+    OPENEDONE -->|`{NEWLINE}`| OPENEDONE
+    OPENEDONE -->|`{WHITESPACE}+`| OPENEDONE
+    OPENEDONE -->|`">"`| INITIAL
+    OPENEDONE -->|`.`| INITIAL
+    OPENEDONE -->|`<<EOF>>`| INITIAL
+
+    TAG -->|`{NEWLINE}`| TAG
+    TAG -->|`{WHITESPACE}+`| TAG
+    TAG -->|`{NAME}`| ATTR1
+    TAG -->|`">"`| INITIAL
+    TAG -->|`"/>"`| INITIAL
+    TAG -->|`.`| INITIAL
+    TAG -->|`<<EOF>>`| INITIAL
+
+    ATTR1 -->|`{NEWLINE}`| ATTR1
+    ATTR1 -->|`{WHITESPACE}+`| ATTR1
+    ATTR1 -->|`"="`| ATTR2
+    ATTR1 -->|`.`| YYINITIAL
+    ATTR1 -->|`<<EOF>>`| YYINITIAL
+
+    ATTR2 -->|`{NEWLINE}`| ATTR2
+    ATTR2 -->|`{WHITESPACE}+`| ATTR2
+    ATTR2 -->|`\"`| DQSTRING
+    ATTR2 -->|`\'`| SQSTRING
+    ATTR2 -->|`.`| YYINITIAL
+    ATTR2 -->|`<<EOF>>`| YYINITIAL
+
+    DQSTRING -->|`\"`| TAG
+    DQSTRING -->|`"&"{NAME}";"`| DQSTRING
+    DQSTRING -->|`[^&\"]+`| DQSTRING
+    DQSTRING -->|`"&"{NAME}?`| TAG
+    DQSTRING -->|`<<EOF>>`| INITIAL
+
+    SQSTRING -->|`\'`| TAG
+    SQSTRING -->|`"&"{NAME}";"`| SQSTRING
+    SQSTRING -->|`[^&\']+`| SQSTRING
+    SQSTRING -->|`"&"{NAME}?`| TAG
+    SQSTRING -->|`<<EOF>>`| INITIAL
+
+    CDATA -->|`]]>`| INITIAL
+    CDATA -->|`]]`| CDATA
+    CDATA -->|`]`| CDATA
+    CDATA -->|`[^>\]]+`| CDATA
+    CDATA -->|`<<EOF>>`| YYINITIAL
+```
+
