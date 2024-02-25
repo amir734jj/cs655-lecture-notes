@@ -45,10 +45,10 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
     var targetTime = new Date(startTime.getTime() + (manifest.index - 1) * 7 * 24 * 60 * 60 * 1000);
 
     labs[labName] = {
+      enabledSince: targetTime,
       md: md.render(markdown),
       pdf: path.join(labPath.replace('src/', ''), "note.marp.pdf"),
-      video: manifest.video,
-      enabled: process.env.NODE_ENV === "production" ? (new Date() > targetTime) : true,
+      video: manifest.video
     };
   });
 });

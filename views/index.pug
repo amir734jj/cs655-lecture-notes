@@ -11,10 +11,8 @@ block content
 
         -var index = 0
         each val, key in labs
-          - if (val.enabled) {
-            li
-              a(href=`#${key}`, data-toggle='tab') #{key}
-          - }
+          li(data-enabled-since=val.enabledSince)
+            a(href=`#${key}`, data-toggle='tab') #{key}
           - index++
 
       .tab-content.col-md-10
@@ -80,22 +78,20 @@ block content
               pre(style="display:none", id="result")
 
         each val, key in labs
-          - if (val.enabled) {
-            .tab-pane(id=key)
-              .lazyload
-                script(type='text/lazyload')
+          .tab-pane(id=key)
+            .lazyload
+              script(type='text/lazyload')
+                .container-fluid
+                  a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
+
+                - if (val.video) {
                   .container-fluid
-                    a.btn.btn-default.pull-right(href=`${val.pdf}`, download=`${key}.pdf`, style="margin-bottom: 1rem") Download PDF
+                    .embed-responsive.embed-responsive-16by9
+                      iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
 
-                  - if (val.video) {
-                    .container-fluid
-                      .embed-responsive.embed-responsive-16by9
-                        iframe.embed-responsive-item(width='560' height='315', src=`${val.video}`, frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+                    hr
+                - }
 
-                      hr
-                  - }
-
-                  .container-fluid 
-                    |!{val.md}
-          - }
+                .container-fluid 
+                  |!{val.md}
           -index++

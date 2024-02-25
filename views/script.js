@@ -1,6 +1,14 @@
 $(document).ready(function () {
   var self = {};
 
+  $("[data-enabled-since]").each(function() {
+    var enabledSince = new Date($(this).data("enabledSince"));
+
+    if ((new Date() < enabledSince)) {
+      $(this).hide();
+    }
+  });
+
   $("ul.nav.nav-pills li a").click(function () {
     window.location.hash = $(this).attr("href");
   });
