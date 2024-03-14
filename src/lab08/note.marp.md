@@ -71,7 +71,7 @@ def foo(x : Any) : Any = x match {
 // if (X >= 6 && X <= 7)
   case a : Amir =>
 
-// if (X >= 2 && X <= 1)
+// if (X >= 2 && X <= 2)
   case i : Int =>
 
 // if (X == 0)
