@@ -16,6 +16,8 @@ class Baz() extends Foo() { }
 Use a map where key is `Bar`, `Baz` and value is `Foo`
 
 ```scala
+// child as key
+// parent as value
 var table: Map[Symbol, Symbol] = Map()
 
 override def visit_class_decl(cd: Cclass_decl,
@@ -31,12 +33,24 @@ override def visit_class_decl(cd: Cclass_decl,
 
 To get classes that extend class `Foo`, i.e. `Bar` & `Baz` we need to invert the map
 
-```
-val inverted: Map[String, List[String]] = table
-    .groupBy(_._2)                          // GroupBy value
-                                            // OR .groupBy(x => x._2)
-    .map(x => x._1 -> x._2.values.toList)   // _1 is the old value, _2 is the is keys
-    .toMap                                  // Create a map 
+```scala
+// collect direct children
+var inverted = table
+  .groupBy(_._2)
+  .map(x => x._1 -> x._2.keys.toSet)
+  .toMap
+
+// transitive closure to collect indirect children
+for (_ <- 0 to inverted.size) {
+  for ((parent, children) <- inverted) {
+    for (child <- children) {
+      inverted += (parent -> (inverted(parent) ++ inverted.getOrElse(
+        child,
+        Set()
+      )))
+    }
+  }
+}
 ```
 
 --- 
@@ -59,17 +73,17 @@ Cool:
      |              |                     |
     Int (2,2)    String (3,3)           IO (4,7)
                                       /             \
-                                 ArrayAny (5,5)    Amir (6,7)
+                                 ArrayAny (5,5)    Foo (6,7)
                                                     |
-                                                   Taha (7,7)
+                                                   Bar (7,7)
  
  
 def foo(x : Any) : Any = x match {
 // if (X >= 7 && X <= 7)
-  case t : Taha =>
+  case t : Bar =>
   
 // if (X >= 6 && X <= 7)
-  case a : Amir =>
+  case a : Foo =>
 
 // if (X >= 2 && X <= 2)
   case i : Int =>
