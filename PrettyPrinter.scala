@@ -19,7 +19,7 @@ class PrettyPrinter(var program: Program) extends CoolTreeVisitor() {
   private def indent() = " " * lv * 2
 
   private def strify(s: Symbol) = {
-    val keyValPattern = "Symbol\\((\\.+)\\)".r
+    val keyValPattern = "Symbol\\(([^)]+)\\)".r
     val source = s.toString();
 
     val result = keyValPattern.findFirstMatchIn(source) match {
