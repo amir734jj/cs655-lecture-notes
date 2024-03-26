@@ -72,4 +72,13 @@ app.post("/coolc", (req, res) => {
   });
 });
 
+app.post("/format", (req, res) => {
+  const PA4jar = '/usr/local/lib/PA4.jar';
+  const command = `echo '${req.body.code}' > temp.cool && coolc -P p temp.cool > temp.in && scalac -nowarn -cp .:${PA4jar} PrettyPrinter.scala && scala -cp .:${PA4jar} Main < temp.in`;
+
+  exec(command, (_, stdout, stderr) => {
+    res.json({ result: `${stdout}\n${stderr}`.trim(), code: req.body.code });
+  });
+});
+
 app.listen(port, () => console.log(`app listening on port ${port}!`));

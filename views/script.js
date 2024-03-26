@@ -13,8 +13,7 @@ $(document).ready(function () {
     window.location.hash = $(this).attr("href");
   });
 
-  $("#cool").on("submit", function (evt) {
-    evt.preventDefault();
+  $("#cool #run").on("click", function (evt) {
     var request = {
       code: self.editor.getValue()
     };
@@ -31,6 +30,27 @@ $(document).ready(function () {
       self.editor.updateOptions({ readOnly: false });
 
       $("#result").show().html(data.result);
+    });
+  });
+
+
+  $("#cool #format").on("click", function (evt) {
+    var request = {
+      code: self.editor.getValue()
+    };
+    var submitButton = $(this).find(':submit');
+
+    self.editor.updateOptions({ readOnly: true });
+    submitButton.prop('disabled', true);
+    $("#cool-spiner").show();
+
+    $.post("/format", request, function (data) {
+      $("#cool-spiner").hide();
+      
+      submitButton.prop('disabled', false);
+      self.editor.updateOptions({ readOnly: false });
+
+      self.editor.setValue(data.result);
     });
   });
 

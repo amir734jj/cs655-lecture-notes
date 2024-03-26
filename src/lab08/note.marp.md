@@ -21,13 +21,13 @@ Use a map where key is `Bar`, `Baz` and value is `Foo`
 var table: Map[Symbol, Symbol] = Map()
 
 override def visit_class_decl(cd: Cclass_decl,
-                              name: Symbol,
+                              child: Symbol,
                               parent: Symbol,
                               features: Features,
                               filename: Symbol) {
 
     // Add a key value pair to the map
-    table += (name -> parent)
+    table += (child -> parent)
 }
 ```
 
@@ -40,8 +40,10 @@ var inverted = table
   .map(x => x._1 -> x._2.keys.toSet)
   .toMap
 
+// now inverted holds a dictionary where key=parent and value=children
+
 // transitive closure to collect indirect children
-for (_ <- 0 to inverted.size) {
+for (_ <- 1 to inverted.size) {
   for ((parent, children) <- inverted) {
     for (child <- children) {
       inverted += (parent -> (inverted(parent) ++ inverted.getOrElse(
