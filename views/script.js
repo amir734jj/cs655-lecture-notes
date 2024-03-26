@@ -17,37 +17,36 @@ $(document).ready(function () {
     var request = {
       code: self.editor.getValue()
     };
-    var submitButton = $(this).find(':submit');
+    var runButton = $(this);
 
     self.editor.updateOptions({ readOnly: true });
-    submitButton.prop('disabled', true);
+    runButton.prop('disabled', true);
     $("#cool-spiner").show();
 
     $.post("/coolc", request, function (data) {
       $("#cool-spiner").hide();
       
-      submitButton.prop('disabled', false);
+      runButton.prop('disabled', false);
       self.editor.updateOptions({ readOnly: false });
 
       $("#result").show().html(data.result);
     });
   });
 
-
   $("#cool #format").on("click", function (evt) {
     var request = {
       code: self.editor.getValue()
     };
-    var submitButton = $(this).find(':submit');
+    var formatButton = $(this);
 
     self.editor.updateOptions({ readOnly: true });
-    submitButton.prop('disabled', true);
+    formatButton.prop('disabled', true);
     $("#cool-spiner").show();
 
     $.post("/format", request, function (data) {
       $("#cool-spiner").hide();
       
-      submitButton.prop('disabled', false);
+      formatButton.prop('disabled', false);
       self.editor.updateOptions({ readOnly: false });
 
       self.editor.setValue(data.result);
