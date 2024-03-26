@@ -13,42 +13,51 @@ $(document).ready(function () {
     window.location.hash = $(this).attr("href");
   });
 
-  $("#cool #run").on("click", function (evt) {
+  const toggleEnableButtons = (enable) => {
+    $("#cool #format").prop('disabled', enable);
+    $("#cool #run").prop('disabled', enable);
+  };
+
+  const toggleEnableSpinner = (enable) => {
+    if (enable) {
+      $("#cool-spiner").show();
+    } else {
+      $("#cool-spiner").hide();
+    }
+  };
+
+  $("#cool #run").on("click", function () {
     var request = {
       code: self.editor.getValue()
     };
-    var runButton = $(this);
 
     self.editor.updateOptions({ readOnly: true });
-    runButton.prop('disabled', true);
-    $("#cool-spiner").show();
+    toggleEnableButtons(true);
+    toggleEnableSpinner(true);
 
     $.post("/coolc", request, function (data) {
-      $("#cool-spiner").hide();
-      
-      runButton.prop('disabled', false);
-      self.editor.updateOptions({ readOnly: false });
+      toggleEnableSpinner(false);
+      toggleEnableButtons(false);
 
+      self.editor.updateOptions({ readOnly: false });
       $("#result").show().html(data.result);
     });
   });
 
-  $("#cool #format").on("click", function (evt) {
+  $("#cool #format").on("click", function () {
     var request = {
       code: self.editor.getValue()
     };
-    var formatButton = $(this);
 
     self.editor.updateOptions({ readOnly: true });
-    formatButton.prop('disabled', true);
-    $("#cool-spiner").show();
+    toggleEnableButtons(true);
+    toggleEnableSpinner(true);
 
     $.post("/format", request, function (data) {
-      $("#cool-spiner").hide();
-      
-      formatButton.prop('disabled', false);
-      self.editor.updateOptions({ readOnly: false });
+      toggleEnableSpinner(false);
+      toggleEnableButtons(false);
 
+      self.editor.updateOptions({ readOnly: false });
       self.editor.setValue(data.result);
     });
   });
