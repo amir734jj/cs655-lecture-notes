@@ -58,7 +58,12 @@ $(document).ready(function () {
       toggleEnableButtons(false);
 
       self.editor.updateOptions({ readOnly: false });
-      self.editor.setValue(data.result);
+
+      if (data.code && !data.result) {
+        $("#result").show().html("formatting failed");
+      } else {
+        self.editor.setValue(data.result);
+      }
     });
   });
 
