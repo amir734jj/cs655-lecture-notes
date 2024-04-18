@@ -13,6 +13,9 @@ Compiler optimization and exercise of AST modification
 
 - Remember AST is immutable so we need to return a new AST
 
+
+**Ensure** `cool.aps` contains the new `is_constant` attribute for Expression and similarly the `cooltree.cool` matches the updated `cool.aps`
+
 ---
 
 # How to accomplish it?

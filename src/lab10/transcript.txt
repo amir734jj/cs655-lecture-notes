@@ -7,5 +7,5 @@ More specifically we use a visitor pattern to generate code and the code for a m
     registers are available, which ones are being used and behave differently. Instead, we use a set of
     steps to manage these temporary data so that the method body is clean and context unaware.
 The trick we use us something called prologues and epilogues. Please review handout 8 of cs655.
-It is very important to follow the handout exactly because we don't want to debug stack, its not straighforward.
+It is very important to follow the handout exactly because we don't want to debug stack, its not straightforward.
 

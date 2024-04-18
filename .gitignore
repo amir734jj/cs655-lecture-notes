@@ -3,3 +3,6 @@
 node_modules
 note.marp.pdf
 .idea
+*.class
+*.in
+temp.*

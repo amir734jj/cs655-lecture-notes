@@ -30,8 +30,9 @@ var labs = {};
 
 glob("src/lab*/manifest.json", {}, function (err, files) {
   files.forEach((file) => {
-    var labPath = file.split("/").slice(0, -1).join("/");
-    var labName = labPath.split("/").slice(-1).pop();
+    const labPath = file.split("/").slice(0, -1).join("/");
+    const labName = labPath.split("/").slice(-1).pop();
+    const index = parseInt(labName.match(new RegExp("lab(\\d+)"))[1]);
 
     var manifest = JSON.parse(fs.readFileSync(file), {
       encoding: "utf8",
@@ -42,7 +43,7 @@ glob("src/lab*/manifest.json", {}, function (err, files) {
       .toString();
 
     // Calculate the target time by adding n * 7 days to the start time
-    var targetTime = new Date(startTime.getTime() + (manifest.index) * 7 * 24 * 60 * 60 * 1000);
+    var targetTime = new Date(startTime.getTime() + index * 7 * 24 * 60 * 60 * 1000);
 
     labs[labName] = {
       enabledSince: targetTime,

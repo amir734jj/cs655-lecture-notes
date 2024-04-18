@@ -1,11 +1,52 @@
+
 Hi Everyone,
 
-Welcome to lab12. This is the last lab for this semester.
+Welcome to lab #11. In this lab we will think about how to how code
+generator works recursively and transfer of control flows.
 
-In this lab we will talk about optimized code generation. For specifically three improvements to assignment 7:
-    - no more boxing and unboxing for boolean
-    - no more boxing and unboxing for integer
-        > this means that when expression returns a boolean or integer, it's just the value
-          and now unlike assignment 7 we don't need to try to get the value from an object
-    - using s1 ... s6 as temporaries
-        > this means that we need to cycle through temporaries and if current temporaries
+We will go over
+    conditional code generation
+    match expression including null arm
+    type checking
+
+First lets talk about conditional:
+
+One way to write conditional is the following
+
+  beqz $a0, false   # if false jump to false label
+                    # otherwise continue
+true
+  # then arm of conditional
+
+  b done            # branch unconditionally to done
+false:
+  # else arm of conditional
+
+done:
+  # end of conditional
+
+Trick question. beqz is a macro MIPS instruction. What is the actual MIPS instruction when macro gets expanded?
+beq $a0, $zero, false  # register $zero which is an alias for $0 holds the value of zero and it cannot change
+
+What is another way to write this conditional:
+> hint: use bne instruction
+
+
+Now lets talk about match expression. Remember pattern mach expression can have null arm but it is optional.
+if null arm is missing, it will get added by the compiler. You may be wondering why null arm is needed?
+
+The reasons is all other arms expect value to not be null.
+
+In the cool-manual it specifically says that if value is null and no null branch is present then we should
+pass the control to runtime exception.
+
+We already did a semantic check which means type of each arm of the branch is less than previous. However, 
+we need to write null branch first.
+
+Last thing we talk about it type checking. Remember each object at offset 0 has the type code.
+The code means when we go class name table at offset of the typecode we will get class name of the object
+
+Basically for Boolean we have 5. And indice start from 0. So if we have class name table label + 5 X 4 we will get
+class name of the object.
+
+Note that addresses are in bytes.
