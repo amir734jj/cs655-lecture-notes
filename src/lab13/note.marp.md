@@ -1,18 +1,30 @@
-# Optimize code generation
+# Temporary calculations
 
----
+The goal of this lab is to implement temporary calculations for a `Cmethod` body that you will need for PA7.
 
-### Three improvements to assignment #7
+The trick is to implement these temporary calculations as recursive functions that takes as parameter current number of temporaries and AST node and in the body of this function it recursively calls itself with its child ASTs. The highest value of parameter for temporaries is the number of temporaries that we need to allocate for this method.
 
-- no more boxing and unboxing for boolean
-- no more boxing and unboxing for integer
-    - this means that when expression returns a boolean or integer, it's just the value and now unlike assignment 7 we don't need to try to get the value from an object. The value in register `a0` is the final value.
-- using `s1 ... s6` as temporaries
-    this means that we need to cycle through temporaries and if current temporaries exceed the available temporary registers, then
-    we need to spill/un-pill.
+For example:
 
----
+```scala
+// number of temporaries for a method start from 0
+var max_temporaries: Int = 0;
 
-# Lab assignment
+def calc(a: Cadd, current_temporaries: Int): Unit = {
+  // update max_temporaries
+  if (current_temporaries > max_temporaries)
+    max_temporaries = current_temporaries
+  else
+    ();
 
-In this lab assignment we wil compare the generated MIPS code with/without optimization flag on.
+  calc(a.get_e1(), current_temporaries)
+
+  // we need one extra temporaries to
+  // temporary hold the result of e1 expression
+  calc(a.get_e2(), current_temporaries + 1);
+
+  // nothing to return
+  ()
+}
+```
+
