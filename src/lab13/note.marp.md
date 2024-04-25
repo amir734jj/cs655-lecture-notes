@@ -2,7 +2,11 @@
 
 The goal of this lab is to implement temporary calculations for a `Cmethod` body that you will need for PA7.
 
+---
+
 The trick is to implement these temporary calculations as recursive functions that takes as parameter current number of temporaries and AST node and in the body of this function it recursively calls itself with its child ASTs. The highest value of parameter for temporaries is the number of temporaries that we need to allocate for this method.
+
+---
 
 For example:
 
